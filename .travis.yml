@@ -1,0 +1,16 @@
+language: java
+
+# Testo su diverse jdk
+jdk:
+  - openjdk11
+
+addons:
+  sonarcloud:
+    organization: "danilo-dellorco"
+    token:
+      secure: "1997c24575a5cf4f8a50b5fa91f46420810416d5" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean verify
+  - sonar:sonar -Dsonar.login=1997c24575a5cf4f8a50b5fa91f46420810416d5

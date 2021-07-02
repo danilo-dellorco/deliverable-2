@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Danilo</groupId>
+  <artifactId>Deliverable2</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <sonar.projectKey>danilo-dellorco_deliverable2</sonar.projectKey>
+    <sonar.organization>danilo-dellorco</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
+  
+  <build>
+    <plugins>
+      <plugin><!-- Use latest to build recent Java applications -->
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <repositories>
+    <repository>
+      <id>jgit-repository</id>
+      <url>https://repo.eclipse.org/content/groups/releases/</url>
+    </repository>
+  </repositories>
+
+  <!-- Core Library -->
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>5.11.0.202103091610-r</version>
+    </dependency>
+    
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+   
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+   
+   <!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20210307</version>
+	</dependency>
+
+   <!-- https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-stable -->
+	<dependency>
+    	<groupId>nz.ac.waikato.cms.weka</groupId>
+    	<artifactId>weka-stable</artifactId>
+    	<version>3.8.5</version>
+	</dependency>
+
+
+   <!-- https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/SMOTE -->
+	<dependency>
+    	<groupId>nz.ac.waikato.cms.weka</groupId>
+    	<artifactId>SMOTE</artifactId>
+    	<version>1.0.3</version>
+	</dependency>
+
+
+  </dependencies>
+  
+  
+</project>

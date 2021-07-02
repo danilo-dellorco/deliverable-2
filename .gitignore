@@ -1,0 +1,16 @@
+/target/
+
+# Eclipse Core      
+.project
+
+# JDT-specific (Eclipse Java Development Tools)     
+.classpath
+
+# Bin Folder
+/bin/
+
+# Output Folder
+/output/
+
+# Settings file of the project
+paths.config
