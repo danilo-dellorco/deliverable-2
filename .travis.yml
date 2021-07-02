@@ -8,8 +8,8 @@ addons:
   sonarcloud:
     organization: "danilo-dellorco"
     token:
-      secure: "c7bc3ea5cdb4bb1454e625d6b015d862f9094035" # encrypted value of your token
+      secure: "8220464b6830a61af3b55e093db42b686c974692" # encrypted value of your token
 
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=danilo-dellorco_deliverable-2
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=danilo-dellorco_deliverable-2
