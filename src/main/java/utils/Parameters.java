@@ -1,5 +1,8 @@
-package tools;
+package utils;
 
+/**
+ * Contiene tutti i parametri e le costanti utilizzate nel progetto
+ */
 public class Parameters {
 	
 	private Parameters() {}
@@ -39,4 +42,8 @@ public class Parameters {
 	public static final String DATASET_ARFF = "_Dataset.arff";
 	public static final String WEKA_CSV = "_TempDataset.csv";
 	public static final String RESULT_CSV = "_AnalysisResult.csv";
+	
+	// CSV Headers
+	public static final String CSV_HEADER = "VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;ChgSetSize;MaxChgSetSize;AVGChgSetSize;NumRevisions;NumBugFixed;NAuth;Age;Buggyness\n";
+	public static final String CSV_HEADER_WEKA = "VersionID,VersionName,Path,Size,LOC_Touched,AVGLocAdded,LocAdded,MaxLocAdded,ChgSetSize,MaxChgSetSize,AVGChgSetSize,NumRevisions,NumBugFixed,NAuth,Age,Buggyness\n";
 }

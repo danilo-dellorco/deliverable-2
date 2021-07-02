@@ -21,7 +21,7 @@ import weka.filters.supervised.instance.SMOTE;
 import weka.filters.supervised.instance.SpreadSubsample;
 
 
-public class WekaProject {
+public class WekaAPI {
 	private static final String VERSIONID = "VersionID";
 	ArrayList<String> classifiers;
 	ArrayList<String> resamplingMethods;
@@ -29,7 +29,7 @@ public class WekaProject {
 	private String name;
 	private Instances dataset;
 	
-	public WekaProject(String projectName) {
+	public WekaAPI(String projectName) {
 		this.classifiers = new ArrayList<>(Arrays.asList("Random Forest", "Naive Bayes", "IBk"));
 		this.resamplingMethods = new ArrayList<>(Arrays.asList("no resample", "Oversampling", "Undersampling", "Smote"));
 		this.featureSelectionMethods = new ArrayList<>(Arrays.asList("no feature selection", "Best First"));
@@ -41,9 +41,9 @@ public class WekaProject {
 	/**
 	 * Esegue tutte le iterazioni necessarie di Walk Forward in base al numero di release presenti nel dataset
 	 */
-	public List<WekaResult> runWalkForward() {
+	public List<WekaMetrics> runWalkForward() {
 		int releasesNumber = getReleasesNumber(getDataset());
-		List<WekaResult> resultList = new ArrayList<>();
+		List<WekaMetrics> resultList = new ArrayList<>();
 		
 		//per ogni classificatore, per ogni metodo di feature selection, per ogni metodo di balancing, per ogni iterazione di walk forward
 		//viene salvato il risultato
@@ -52,16 +52,16 @@ public class WekaProject {
 				for(String resamplingMethodName : this.resamplingMethods) {	
 					//con walk-forward partiamo dalla seconda release come test set perche non abbiamo un training set per la prima
 					//terminiamo con l'ultima release come test set che avra tutte le precedenti come training set
-					WekaResult mean = new WekaResult(classifierName, featureSelectionName, resamplingMethodName);
-					for(int i = 2; i < releasesNumber+1; i++) {
-						WekaResult result = new WekaResult(classifierName, featureSelectionName, resamplingMethodName);
+					WekaMetrics mean = new WekaMetrics(classifierName, featureSelectionName, resamplingMethodName);
+					for(int i = 2; i < releasesNumber; i++) {
+						WekaMetrics result = new WekaMetrics(classifierName, featureSelectionName, resamplingMethodName);
 						Instances[] trainTest = splitTrainingTestSet(getDataset(), i);
 						runWalkForwardIteration(trainTest, result, i);
 						resultList.add(result);
 						
 						mean.setTotalValues(result);
 					}
-					mean.calculateMean(releasesNumber-1);
+					mean.calculateMean(releasesNumber-2);
 					resultList.add(mean);
 					
 				}
@@ -107,7 +107,7 @@ public class WekaProject {
 	/**
 	 * Esegue un'iterazione di Walk Forward
 	 * */
-	public void runWalkForwardIteration(Instances[] trainTest, WekaResult result, int iterationIndex) {
+	public void runWalkForwardIteration(Instances[] trainTest, WekaMetrics result, int iterationIndex) {
 		Instances trainingSet = trainTest[0];
 		Instances testSet = trainTest[1];
 		
@@ -259,7 +259,7 @@ public class WekaProject {
 	public int getPositiveClassIndex() {
 		int index = 0;
 		int positiveIndex = 0;
-		//recupero l'indice della buggyness pari a true
+		// Recupero l'indice della buggyness pari a true
 		Enumeration<Object> values = this.dataset.attribute(this.dataset.numAttributes()-1).enumerateValues();
 		while(values.hasMoreElements()) {
 			Object v = values.nextElement();

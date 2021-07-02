@@ -1,4 +1,4 @@
-package tools;
+package utils;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -10,9 +10,9 @@ import git.GitRelease;
 import git.GitRepo;
 import jira.JiraRelease;
 
-public class DebugTools {
+public class Debug {
 	
-	private DebugTools() {}
+	private Debug() {}
 	
 	public static void waitInput(){
 		@SuppressWarnings("resource")
@@ -60,27 +60,4 @@ public class DebugTools {
 	public static String timestamp() {
 		return new Timestamp(System.currentTimeMillis()).toString();
 	}
-	
-	/*
-	public void consistencyCheck(List<GitCommit> fixBugCommits) {
-		for (GitRelease r : this.getReleaseList()) {
-			int count = 0;
-			int buggy = 0;
-			for (GitCommit c : fixBugCommits) {
-				List<GitCommit> revisions = r.getRevisions();
-				if (revisions.contains(c)) {
-					count++;
-				}
-			}
-			
-			for (ProjectClass p : r.getClassList()) {
-				if (p.isBuggy())
-					buggy++;
-			}
-			System.out.println("=".repeat(30));
-			System.out.println(
-					String.format("Release: %s\nCommitDiTipoBug: %d\nClassi buggy: %d", r.getName(), count, buggy));
-		}
-	}
-	*/
 }

@@ -11,9 +11,9 @@ public class Proportion {
 	private Proportion() {}
 
 	
-	/*
+	/**
 	 * Implementazione del metodo "Incremental" per il calcolo di Proportion
-	 */
+	 **/
 	public static int incremental(List<JiraTicket> tickets) {
 		double sum = 0;
 		int k = 0;
@@ -38,10 +38,10 @@ public class Proportion {
 	}
 	
 	
-	/*
+	/**
 	 * Predice l'Injected Version tramite Proportion ed imposta l'IV predetta per tutti
 	 * i ticket Jira che non hanno una IV.
-	 */
+	 **/
 	public static void predictIV(String mode, List<JiraTicket> tickets, List<JiraRelease> releases) {
 		int ov;
 		int fv;

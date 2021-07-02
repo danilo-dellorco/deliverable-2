@@ -18,11 +18,11 @@ import git.GitRelease;
 public class GitHubAPI {
 	
 	private GitHubAPI() {}
-	/*
+	/**
 	 * Inizializza la repository Git. Se non è presente in locale effettua il clone
 	 * dall'URL GitHub, altrimenti apre la copia della repository già presente in
 	 * locale
-	 */
+	 **/
 	public static Git initializeRepository(String remote, String local) throws GitAPIException, IOException {
 		Git git;
 		Logger logger = Logger.getLogger("GitHubAPI");
@@ -40,9 +40,9 @@ public class GitHubAPI {
 		return git;
 	}
 	
-	/*
+	/**
 	 * Ritorna la branch di default della repository Git
-	 */
+	 **/
 	private static String getDefaultBranchName(Git git) {	
 		try {
 			List<Ref> branches = git.branchList().setListMode(ListMode.ALL).call();
@@ -61,9 +61,9 @@ public class GitHubAPI {
 	}
 	
 	
-	/*
+	/**
 	 * Ritorna la GitRelease più vecchia tra quelle passate in input
-	 */
+	 **/
 	public static GitRelease getOldestGitRelease(List<GitRelease> versions) {
 		GitRelease oldest = versions.get(0);
 		for (GitRelease v:versions) {
@@ -75,9 +75,9 @@ public class GitHubAPI {
 	}
 
 	
-	/*
+	/**
 	 * Ritorna la GitRelease più recente tra quelle passate in input
-	 */
+	 **/
 	public static GitRelease getLatestGitRelease(List<GitRelease> versions) {
 		GitRelease latest = versions.get(0);
 		for (GitRelease v:versions) {

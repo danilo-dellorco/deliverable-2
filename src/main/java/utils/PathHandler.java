@@ -1,4 +1,4 @@
-package tools;
+package utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class PathHandler {
 	private PathHandler() {}
 	
-	/*
+	/**
 	 * Ottiene il Path della cartella Git locale tramite il file di configurazione "paths.config"
 	 */
 	public static String getGitPath() throws FileNotFoundException {
@@ -23,7 +23,7 @@ public class PathHandler {
     }
 	
 	
-	/*
+	/**
 	 * Dato un full path in input ritorna soltanto il nome della classe Java
 	 */
 	public static String getNameFromPath(String path) {

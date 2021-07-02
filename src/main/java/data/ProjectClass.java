@@ -3,15 +3,32 @@ package data;
 import java.util.Date;
 
 import git.GitRelease;
-import tools.PathHandler;
+import utils.PathHandler;
 
+/**
+ * Rappresenta una classe relativa al progetto da analizzare
+ */
 public class ProjectClass {
+	
+	// Attributi della classe
+	private boolean buggyness;
+	
+	public ProjectClass (String path, String name, GitRelease release){
+		this.path = path;
+		this.name = name;
+		this.release = release;
+	}
 	
 	private String path;
 	private String name;
 	private GitRelease release;
 	private Date dateAdded;
 	private Metrics metrics;
+	
+	public void rename(String newPath) {
+		this.setPath(newPath);
+		this.setName(PathHandler.getNameFromPath(newPath));
+	}
 	
 	public Metrics getMetrics() {
 		return metrics;
@@ -27,15 +44,6 @@ public class ProjectClass {
 	
 	public void setDateAdded(Date dateAdded) {
 		this.dateAdded = dateAdded;
-	}
-
-	// Attributi della classe
-	private boolean buggyness;
-	
-	public ProjectClass (String path, String name, GitRelease release){
-		this.path = path;
-		this.name = name;
-		this.release = release;
 	}
 
 	public String getPath() {
@@ -70,10 +78,6 @@ public class ProjectClass {
 		this.buggyness = buggyness;
 	}
 	
-	public void rename(String newPath) {
-		this.setPath(newPath);
-		this.setName(PathHandler.getNameFromPath(newPath));
-	}
 	
 	public void print() {
 		System.out.println("Class Name: "+this.path);

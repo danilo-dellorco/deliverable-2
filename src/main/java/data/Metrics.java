@@ -27,26 +27,17 @@ public class Metrics {
 	private int avgChgSetSize;		//  11) Numero medio file committed insieme alla classe
 	private int nAuth;				//  12) Numero di autori che hanno toccato la classe (nella release)
 	
+	// Usate per il calcolo delle medie
 	private int counterLocAdded;
-	private int counterChurn;
 	private int counterChgSet;
-//	private List<PersonIdent> listOfAuthors = new ArrayList<>();
 	private List<String> listOfAuthors = new ArrayList<>();
-	
-	// Metriche non utilizzate
-	private int churn; 				//  8) Differenza tra LocAdded e LocDeleted
-	private int maxChurn; 			//  9) Massimo tra tutti i churn delle revisioni (nella release)
-	private int avgChurn; 			// 10) Media tra tutti i churn delle revisioni (nella release)
 
-	public Metrics() {
-		//Costruttore
-	}
+	public Metrics() {}
 	
 
 	/**
 	 * Calcola le linee di codice di una classe, escludendo Commenti e linee vuote
-	 * 
-	 */
+	 **/
 	public void calculateSize(ObjectId objectId, ObjectReader reader)
 			throws LargeObjectException,IOException {
 		byte[] data = reader.open(objectId).getBytes();
@@ -57,7 +48,7 @@ public class Metrics {
 
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			line = line.replace("\\s", "");
+			line = line.replaceAll("\\s+", "");
 			if (!(line.startsWith("/") || line.startsWith("*") || line.startsWith("//") || line.startsWith("*/")
 					|| line.equalsIgnoreCase(""))) {
 				calcSize = calcSize + 1;
@@ -70,7 +61,7 @@ public class Metrics {
 	
 	/**
 	 * Calcola le linee di codice modificate di una classe in un commit
-	 */
+	 **/
 	public void calculateLocTouched(EditList editList) {
 		int linesAdded = 0;
 		int linesDeleted = 0;
@@ -80,7 +71,6 @@ public class Metrics {
 		}
 		this.locTouched += (linesAdded + linesDeleted);
 		this.locAdded += linesAdded;
-		calculateChurn(linesAdded, linesDeleted);
 		calculateMaxLocAdded(linesAdded);
 		calculateAVGLocAdded(linesAdded);
 	}
@@ -89,7 +79,7 @@ public class Metrics {
 	/**
 	 * Ogni volta viene calcolata la media delle linee aggiunte.
 	 * Viene anche calcolata la metrica locAdded (totale di locAdded in una release)
-	 */
+	 **/
 	public void calculateAVGLocAdded(int linesAdded) {
 		if (linesAdded!=0) {
 			counterLocAdded++;
@@ -97,39 +87,9 @@ public class Metrics {
 		}
 	}
 
-	
-	/**
-	 * Calcola il churn come (linesAdded-linesDeleted) tu tutte le versioni.
-	 */
-	private void calculateChurn(int linesAdded, int linesDeleted) {
-		this.churn += linesAdded - linesDeleted;
-		this.counterChurn ++;
-		calculateMaxChurn(this.churn);
-		calculateAVGChurn();
-	}
-
-	
-	/**
-	 * Calcola la metrica Max_Churn
-	 */
-	private void calculateMaxChurn(int churn) {
-		if (churn > this.maxChurn) {
-			this.maxChurn = churn;
-		}
-	}
-	
-	
-	/**
-	 * Calcola la metrica AVGChurn
-	 */
-	private void calculateAVGChurn() {
-		this.avgChurn = this.churn/counterChurn;
-	}
-	
-
 	/**
 	 * Calcola la metrica MaxLocADDED
-	 */
+	 **/
 	private void calculateMaxLocAdded(int locAdded) {
 		if (locAdded > this.maxLocAdded) {
 			this.maxLocAdded = locAdded;
@@ -137,25 +97,25 @@ public class Metrics {
 	}
 	
 	
-	/*
+	/**
 	 * Incrementa di 1 il numero di BugFixed in cui è coinvolto
-	 */
+	 **/
 	public void increaseNumberBugFixed() {
 		this.numberBugFixes ++;
 	}
 	
 	
-	/*
+	/**
 	 * Incrementa di 1 il numero di NumberRevisions in cui è coinvolto
-	 */
+	 **/
 	public void increaseNumberRevisions() {
 		this.numberRevisions ++;
 	}
 	
 	
-	/*
+	/**
 	 * Incrementa il numero di file insieme ai quali è stata committata la classe
-	 */
+	 **/
 	public void increaseChgSetSize(int chg) {
 		this.counterChgSet++;
 		this.chgSetSize += chg;
@@ -164,9 +124,9 @@ public class Metrics {
 	}
 	
 	
-	/*
+	/**
 	 * Calcola il numero massimo di ChgSet
-	 */
+	 **/
 	public void calculateMaxChgSetSize(int chg) {
 		if (chg > maxChgSetSize) {
 			this.maxChgSetSize = chg;
@@ -174,16 +134,16 @@ public class Metrics {
 	}
 	
 	
-	/*
+	/**
 	 * Calcola il numero medio di ChgSet
-	 */
+	 **/
 	public void calculateAVGChgSetSize() {
 		this.avgChgSetSize = this.chgSetSize/counterChgSet;
 	}
 	
-	/*
+	/**
 	 * Calcola il numero di autori che hanno interaggito su una classe C (nella release)
-	 */
+	 **/
 	public void calculateNAuth(String authorName) {
 		if (!listOfAuthors.contains(authorName)) {
 			nAuth++;
@@ -191,20 +151,10 @@ public class Metrics {
 		}
 	}
 	
-	/*
-	 * [DEBUG] Stampa i dati sulle metriche
-	 */
-	public void print() {
-		System.out.println(String.format("Size: %d%nLocTouched: %d%nMaxLocAdded: %d%nChurn: %d%nMaxChurn: %d", size, locTouched,
-				maxLocAdded, churn, maxChurn));
-	}
-	
-	
 	
 	/*===============================================================================================
 	 * Getters & Setters
 	 */
-
 	public double getAvgLocAdded() {
 		return this.avgLocAdded;
 	}
@@ -212,15 +162,7 @@ public class Metrics {
 	public int getLocAdded() {
 		return this.locAdded;
 	}
-	
-	public int getChurn() {
-		return this.churn;
-	}
-	
-	public int getMaxChurn() {
-		return this.maxChurn;
-	}
-	
+		
 	public int getMaxLocAdded() {
 		return this.maxLocAdded;
 	}
@@ -247,14 +189,6 @@ public class Metrics {
 
 	public void setNumberRevisions(int numberRevisions) {
 		this.numberRevisions = numberRevisions;
-	}
-
-	public int getAvgChurn() {
-		return avgChurn;
-	}
-
-	public void setAvgChurn(int avgChurn) {
-		this.avgChurn = avgChurn;
 	}
 
 	public int getMaxChgSetSize() {

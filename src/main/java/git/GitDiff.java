@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.eclipse.jgit.diff.DiffEntry;
 
-import tools.Parameters;
+import utils.Parameters;
 
 public class GitDiff {
 	DiffEntry diff;
@@ -29,7 +29,7 @@ public class GitDiff {
 	}
 	
 	
-	/*
+	/**
 	 * Imposta il vecchio ed il nuovo path di GitDiff per un Diff di tipo RENAME
 	 */
 	public void parseRename() {
@@ -47,7 +47,7 @@ public class GitDiff {
 	}
 	
 	
-	/*
+	/**
 	 * Imposta il Path del GitDiff in base al contenuto del Diff
 	 */
 	public void parseDiffPath() {
@@ -72,7 +72,7 @@ public class GitDiff {
 	}
 	
 	
-	/*
+	/**
 	 * Imposta il tipo di GitDiff in base al contenuto del Diff
 	 */
 	public void parseDiffType() {
@@ -91,7 +91,7 @@ public class GitDiff {
 	}
 	
 	
-	/*
+	/**
 	 * [DEBUG] Stampa tutte le informazioni su un GitDiff
 	 */
 	public void print() {
@@ -107,7 +107,7 @@ public class GitDiff {
 	}
 	
 
-	/*
+	/**
 	 * Ritorna soltanto i DiffEntry relativi ad un file Java
 	 */
 	public static List<DiffEntry> filterJavaDiff(List<DiffEntry> diffEntries) {

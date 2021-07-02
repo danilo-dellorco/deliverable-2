@@ -18,9 +18,9 @@ public class JiraTicket {
 	private List<JiraRelease> affectedVersions;
 	
 	
-	/*
+	/**
 	 * Calcolo dell'OV di un ticket come prima release successiva alla data di creazione
-	 */
+	 **/
 	public JiraRelease getObservedVersion(List<JiraRelease> releases) {
 		LocalDate creationdate = this.getCreationDate();
 		JiraRelease ovTemp = new JiraRelease();
@@ -41,9 +41,9 @@ public class JiraTicket {
 	}
 	
 	
-	/*
+	/**
 	 * Aggiunge una AV alla lista delle Affected Versions
-	 */
+	 **/
 	public void addAffectedVersion(JiraRelease av) {
 		if (!this.affectedVersions.contains(av)) {
 			this.affectedVersions.add(av);
@@ -51,9 +51,9 @@ public class JiraTicket {
 	}
 	
 	
-	/*
+	/**
 	 * Calcolo dell'IV come release più vecchia tra le AV, se presenti
-	 */
+	 **/
 	public JiraRelease getIvFromAffectedVersions() {
 		List<JiraRelease> av = this.getAffectedVersions();
 		JiraRelease ivTemp = new JiraRelease();
@@ -78,7 +78,7 @@ public class JiraTicket {
 	 * 		1) Un AV che coincide con FV
 	 * 		2) Un AV che supera la FV
 	 * 		3) Una lista di AV che copre parzialmente l'intervallo [IV,FV)
-	 */
+	 **/
 	public void fixAvList(List<JiraRelease> releases) {
 		int ivID = iv.getID();
 		int fvID = fv.getID();
@@ -96,9 +96,9 @@ public class JiraTicket {
 	}
 	
 	
-	/*
+	/**
 	 * [DEBUG] Stampa a schermo tutte le informazioni sul JiraTicket
-	 */
+	 **/
 	public void print() {
 		List<JiraRelease> av = this.getAffectedVersions();
 		System.out.println("ID: " + this.getId());

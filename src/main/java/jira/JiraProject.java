@@ -11,9 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import api.JiraAPI;
-import tools.DateHandler;
-import tools.JsonHandler;
-import tools.Parameters;
+import utils.DateHandler;
+import utils.JsonHandler;
+import utils.Parameters;
 
 public class JiraProject {
 	private String url;

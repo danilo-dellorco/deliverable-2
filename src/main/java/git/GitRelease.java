@@ -13,8 +13,8 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 
 import data.Metrics;
 import data.ProjectClass;
-import tools.Parameters;
-import tools.PathHandler;
+import utils.Parameters;
+import utils.PathHandler;
 
 public class GitRelease {
 		private Git git;
@@ -32,7 +32,7 @@ public class GitRelease {
 			this.fetchClassList();
 		}
 
-		/*
+		/**
 		 * Ritorna l'oggetto ProjectClass tramite il suo path
 		 */
 		public ProjectClass getProjectClass(String path) {
@@ -92,7 +92,7 @@ public class GitRelease {
 		}
 		
 		
-		/*
+		/**
 		 * [DEBUG] Stampa le informazioni sulla GitRelease
 		 */
 		public void print() {
@@ -103,7 +103,7 @@ public class GitRelease {
 		}
 		
 		
-		/*
+		/**
 		 * [DEBUG] Stampa la lista delle classi della GitRelease
 		 */
 		public void printClassList() {

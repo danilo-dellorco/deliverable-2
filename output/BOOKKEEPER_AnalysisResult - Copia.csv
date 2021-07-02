@@ -1,0 +1,265 @@
+Progetto;#Training Release;%Training;%Buggy in training;%Buggy in test;Classifier;Feature selection;Balancing;TP;FP;TN;FN;Precision;Recall;Area Under ROC;Kappa
+BOOKKEEPER;1;0.44;0.30;0.22;Random Forest;no feature selection;no resample;35.00;47.00;188.00;31.00;0.43;0.53;0.72;0.30
+BOOKKEEPER;2;0.55;0.26;0.18;Random Forest;no feature selection;no resample;42.00;56.00;306.00;35.00;0.43;0.55;0.79;0.35
+BOOKKEEPER;3;0.69;0.22;0.27;Random Forest;no feature selection;no resample;30.00;26.00;296.00;88.00;0.54;0.25;0.81;0.21
+BOOKKEEPER;4;0.76;0.24;0.32;Random Forest;no feature selection;no resample;75.00;29.00;274.00;68.00;0.72;0.52;0.84;0.46
+BOOKKEEPER;5;0.81;0.26;0.32;Random Forest;no feature selection;no resample;77.00;26.00;282.00;67.00;0.75;0.53;0.87;0.49
+BOOKKEEPER;6;0.77;0.27;0.08;Random Forest;no feature selection;no resample;37.00;159.00;477.00;16.00;0.19;0.70;0.76;0.20
+BOOKKEEPER;7;0.81;0.22;0.04;Random Forest;no feature selection;no resample;12.00;39.00;624.00;18.00;0.24;0.40;0.87;0.26
+BOOKKEEPER;8;0.84;0.19;0.07;Random Forest;no feature selection;no resample;12.00;8.00;642.00;34.00;0.60;0.26;0.82;0.34
+BOOKKEEPER;9;0.93;0.17;0.09;Random Forest;no feature selection;no resample;12.00;30.00;278.00;17.00;0.29;0.41;0.80;0.26
+MEAN;;;;;;;;36.89;46.67;374.11;41.56;0.46;0.46;0.81;0.32
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Random Forest;no feature selection;Oversampling;36.00;70.00;165.00;30.00;0.34;0.55;0.69;0.20
+BOOKKEEPER;2;0.65;0.50;0.18;Random Forest;no feature selection;Oversampling;50.00;102.00;260.00;27.00;0.33;0.65;0.76;0.27
+BOOKKEEPER;3;0.78;0.50;0.27;Random Forest;no feature selection;Oversampling;69.00;56.00;266.00;49.00;0.55;0.58;0.80;0.40
+BOOKKEEPER;4;0.83;0.50;0.32;Random Forest;no feature selection;Oversampling;96.00;51.00;252.00;47.00;0.65;0.67;0.81;0.50
+BOOKKEEPER;5;0.86;0.50;0.32;Random Forest;no feature selection;Oversampling;92.00;59.00;249.00;52.00;0.61;0.64;0.83;0.44
+BOOKKEEPER;6;0.83;0.50;0.08;Random Forest;no feature selection;Oversampling;41.00;210.00;426.00;12.00;0.16;0.77;0.73;0.16
+BOOKKEEPER;7;0.87;0.50;0.04;Random Forest;no feature selection;Oversampling;19.00;60.00;603.00;11.00;0.24;0.63;0.84;0.31
+BOOKKEEPER;8;0.90;0.50;0.07;Random Forest;no feature selection;Oversampling;21.00;33.00;617.00;25.00;0.39;0.46;0.81;0.38
+BOOKKEEPER;9;0.96;0.50;0.09;Random Forest;no feature selection;Oversampling;14.00;50.00;258.00;15.00;0.22;0.48;0.78;0.21
+MEAN;;;;;;;;48.67;76.78;344.00;29.78;0.39;0.60;0.78;0.32
+;
+BOOKKEEPER;1;0.33;0.50;0.22;Random Forest;no feature selection;Undersampling;39.00;75.00;160.00;27.00;0.34;0.59;0.72;0.22
+BOOKKEEPER;2;0.39;0.50;0.18;Random Forest;no feature selection;Undersampling;55.00;132.00;230.00;22.00;0.29;0.71;0.76;0.22
+BOOKKEEPER;3;0.50;0.50;0.27;Random Forest;no feature selection;Undersampling;102.00;125.00;197.00;16.00;0.45;0.86;0.73;0.37
+BOOKKEEPER;4;0.60;0.50;0.32;Random Forest;no feature selection;Undersampling;107.00;64.00;239.00;36.00;0.63;0.75;0.84;0.51
+BOOKKEEPER;5;0.68;0.50;0.32;Random Forest;no feature selection;Undersampling;113.00;85.00;223.00;31.00;0.57;0.78;0.84;0.46
+BOOKKEEPER;6;0.64;0.50;0.08;Random Forest;no feature selection;Undersampling;44.00;281.00;355.00;9.00;0.14;0.83;0.73;0.12
+BOOKKEEPER;7;0.66;0.50;0.04;Random Forest;no feature selection;Undersampling;17.00;87.00;576.00;13.00;0.16;0.57;0.85;0.20
+BOOKKEEPER;8;0.67;0.50;0.07;Random Forest;no feature selection;Undersampling;30.00;54.00;596.00;16.00;0.36;0.65;0.85;0.41
+BOOKKEEPER;9;0.82;0.50;0.09;Random Forest;no feature selection;Undersampling;22.00;76.00;232.00;7.00;0.22;0.76;0.81;0.25
+MEAN;;;;;;;;58.78;108.78;312.00;19.67;0.35;0.72;0.79;0.31
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Random Forest;no feature selection;Smote;37.00;57.00;178.00;29.00;0.39;0.56;0.69;0.28
+BOOKKEEPER;2;0.65;0.50;0.18;Random Forest;no feature selection;Smote;51.00;86.00;276.00;26.00;0.37;0.66;0.78;0.33
+BOOKKEEPER;3;0.78;0.50;0.27;Random Forest;no feature selection;Smote;58.00;85.00;237.00;60.00;0.41;0.49;0.72;0.21
+BOOKKEEPER;4;0.83;0.50;0.32;Random Forest;no feature selection;Smote;86.00;42.00;261.00;57.00;0.67;0.60;0.83;0.48
+BOOKKEEPER;5;0.86;0.50;0.32;Random Forest;no feature selection;Smote;91.00;39.00;269.00;53.00;0.70;0.63;0.86;0.52
+BOOKKEEPER;6;0.83;0.50;0.08;Random Forest;no feature selection;Smote;42.00;200.00;436.00;11.00;0.17;0.79;0.75;0.18
+BOOKKEEPER;7;0.87;0.50;0.04;Random Forest;no feature selection;Smote;12.00;73.00;590.00;18.00;0.14;0.40;0.80;0.15
+BOOKKEEPER;8;0.90;0.50;0.07;Random Forest;no feature selection;Smote;15.00;35.00;615.00;31.00;0.30;0.33;0.80;0.26
+BOOKKEEPER;9;0.96;0.50;0.09;Random Forest;no feature selection;Smote;14.00;46.00;262.00;15.00;0.23;0.48;0.75;0.22
+MEAN;;;;;;;;45.11;73.67;347.11;33.33;0.38;0.55;0.78;0.29
+;
+BOOKKEEPER;1;0.44;0.30;0.22;Random Forest;Best First;no resample;35.00;47.00;188.00;31.00;0.43;0.53;0.72;0.30
+BOOKKEEPER;2;0.55;0.26;0.18;Random Forest;Best First;no resample;46.00;80.00;282.00;31.00;0.37;0.60;0.76;0.30
+BOOKKEEPER;3;0.69;0.22;0.27;Random Forest;Best First;no resample;56.00;34.00;288.00;62.00;0.62;0.47;0.80;0.40
+BOOKKEEPER;4;0.76;0.24;0.32;Random Forest;Best First;no resample;69.00;21.00;282.00;74.00;0.77;0.48;0.82;0.46
+BOOKKEEPER;5;0.81;0.26;0.32;Random Forest;Best First;no resample;79.00;14.00;294.00;65.00;0.85;0.55;0.91;0.56
+BOOKKEEPER;6;0.77;0.27;0.08;Random Forest;Best First;no resample;37.00;163.00;473.00;16.00;0.19;0.70;0.77;0.19
+BOOKKEEPER;7;0.81;0.22;0.04;Random Forest;Best First;no resample;13.00;54.00;609.00;17.00;0.19;0.43;0.81;0.22
+BOOKKEEPER;8;0.84;0.19;0.07;Random Forest;Best First;no resample;12.00;36.00;614.00;34.00;0.25;0.26;0.80;0.20
+BOOKKEEPER;9;0.93;0.17;0.09;Random Forest;Best First;no resample;9.00;28.00;280.00;20.00;0.24;0.31;0.78;0.20
+MEAN;;;;;;;;39.56;53.00;367.78;38.89;0.43;0.48;0.80;0.31
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Random Forest;Best First;Oversampling;36.00;70.00;165.00;30.00;0.34;0.55;0.69;0.20
+BOOKKEEPER;2;0.65;0.50;0.18;Random Forest;Best First;Oversampling;48.00;132.00;230.00;29.00;0.27;0.62;0.71;0.17
+BOOKKEEPER;3;0.78;0.50;0.27;Random Forest;Best First;Oversampling;82.00;37.00;285.00;36.00;0.69;0.69;0.88;0.58
+BOOKKEEPER;4;0.83;0.50;0.32;Random Forest;Best First;Oversampling;78.00;38.00;265.00;65.00;0.67;0.55;0.74;0.44
+BOOKKEEPER;5;0.86;0.50;0.32;Random Forest;Best First;Oversampling;103.00;37.00;271.00;41.00;0.74;0.72;0.87;0.60
+BOOKKEEPER;6;0.83;0.50;0.08;Random Forest;Best First;Oversampling;40.00;228.00;408.00;13.00;0.15;0.75;0.72;0.14
+BOOKKEEPER;7;0.87;0.50;0.04;Random Forest;Best First;Oversampling;17.00;59.00;604.00;13.00;0.22;0.57;0.85;0.28
+BOOKKEEPER;8;0.90;0.50;0.07;Random Forest;Best First;Oversampling;16.00;36.00;614.00;30.00;0.31;0.35;0.80;0.28
+BOOKKEEPER;9;0.96;0.50;0.09;Random Forest;Best First;Oversampling;12.00;47.00;261.00;17.00;0.20;0.41;0.78;0.18
+MEAN;;;;;;;;48.00;76.00;344.78;30.44;0.40;0.58;0.78;0.32
+;
+BOOKKEEPER;1;0.33;0.50;0.22;Random Forest;Best First;Undersampling;39.00;75.00;160.00;27.00;0.34;0.59;0.72;0.22
+BOOKKEEPER;2;0.39;0.50;0.18;Random Forest;Best First;Undersampling;60.00;171.00;191.00;17.00;0.26;0.78;0.73;0.17
+BOOKKEEPER;3;0.50;0.50;0.27;Random Forest;Best First;Undersampling;90.00;82.00;240.00;28.00;0.52;0.76;0.82;0.44
+BOOKKEEPER;4;0.60;0.50;0.32;Random Forest;Best First;Undersampling;98.00;72.00;231.00;45.00;0.58;0.69;0.80;0.43
+BOOKKEEPER;5;0.68;0.50;0.32;Random Forest;Best First;Undersampling;109.00;42.00;266.00;35.00;0.72;0.76;0.90;0.61
+BOOKKEEPER;6;0.64;0.50;0.08;Random Forest;Best First;Undersampling;39.00;245.00;391.00;14.00;0.14;0.74;0.74;0.12
+BOOKKEEPER;7;0.66;0.50;0.04;Random Forest;Best First;Undersampling;20.00;93.00;570.00;10.00;0.18;0.67;0.86;0.23
+BOOKKEEPER;8;0.67;0.50;0.07;Random Forest;Best First;Undersampling;27.00;71.00;579.00;19.00;0.28;0.59;0.84;0.31
+BOOKKEEPER;9;0.82;0.50;0.09;Random Forest;Best First;Undersampling;16.00;69.00;239.00;13.00;0.19;0.55;0.78;0.17
+MEAN;;;;;;;;55.33;102.22;318.56;23.11;0.36;0.68;0.80;0.30
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Random Forest;Best First;Smote;37.00;57.00;178.00;29.00;0.39;0.56;0.69;0.28
+BOOKKEEPER;2;0.65;0.50;0.18;Random Forest;Best First;Smote;52.00;99.00;263.00;25.00;0.34;0.68;0.77;0.29
+BOOKKEEPER;3;0.78;0.50;0.27;Random Forest;Best First;Smote;79.00;69.00;253.00;39.00;0.53;0.67;0.79;0.42
+BOOKKEEPER;4;0.83;0.50;0.32;Random Forest;Best First;Smote;82.00;37.00;266.00;61.00;0.69;0.57;0.84;0.47
+BOOKKEEPER;5;0.86;0.50;0.32;Random Forest;Best First;Smote;109.00;42.00;266.00;35.00;0.72;0.76;0.90;0.61
+BOOKKEEPER;6;0.83;0.50;0.08;Random Forest;Best First;Smote;42.00;185.00;451.00;11.00;0.19;0.79;0.79;0.20
+BOOKKEEPER;7;0.87;0.50;0.04;Random Forest;Best First;Smote;16.00;59.00;604.00;14.00;0.21;0.53;0.82;0.26
+BOOKKEEPER;8;0.90;0.50;0.07;Random Forest;Best First;Smote;19.00;65.00;585.00;27.00;0.23;0.41;0.80;0.23
+BOOKKEEPER;9;0.96;0.50;0.09;Random Forest;Best First;Smote;14.00;46.00;262.00;15.00;0.23;0.48;0.73;0.22
+MEAN;;;;;;;;50.00;73.22;347.56;28.44;0.39;0.61;0.79;0.33
+;
+BOOKKEEPER;1;0.44;0.30;0.22;Naive Bayes;no feature selection;no resample;29.00;80.00;155.00;37.00;0.27;0.44;0.51;0.08
+BOOKKEEPER;2;0.55;0.26;0.18;Naive Bayes;no feature selection;no resample;44.00;109.00;253.00;33.00;0.29;0.57;0.70;0.19
+BOOKKEEPER;3;0.69;0.22;0.27;Naive Bayes;no feature selection;no resample;1.00;1.00;321.00;117.00;0.50;0.01;0.55;0.01
+BOOKKEEPER;4;0.76;0.24;0.32;Naive Bayes;no feature selection;no resample;12.00;1.00;302.00;131.00;0.92;0.08;0.83;0.11
+BOOKKEEPER;5;0.81;0.26;0.32;Naive Bayes;no feature selection;no resample;69.00;28.00;280.00;75.00;0.71;0.48;0.77;0.43
+BOOKKEEPER;6;0.77;0.27;0.08;Naive Bayes;no feature selection;no resample;19.00;62.00;574.00;34.00;0.23;0.36;0.74;0.21
+BOOKKEEPER;7;0.81;0.22;0.04;Naive Bayes;no feature selection;no resample;2.00;1.00;662.00;28.00;0.67;0.07;0.77;0.11
+BOOKKEEPER;8;0.84;0.19;0.07;Naive Bayes;no feature selection;no resample;2.00;84.00;566.00;44.00;0.02;0.04;0.70;-0.06
+BOOKKEEPER;9;0.93;0.17;0.09;Naive Bayes;no feature selection;no resample;7.00;9.00;299.00;22.00;0.44;0.24;0.88;0.27
+MEAN;;;;;;;;20.56;41.67;379.11;57.89;0.45;0.25;0.71;0.15
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Naive Bayes;no feature selection;Oversampling;56.00;233.00;2.00;10.00;0.19;0.85;0.56;-0.06
+BOOKKEEPER;2;0.65;0.50;0.18;Naive Bayes;no feature selection;Oversampling;47.00;116.00;246.00;30.00;0.29;0.61;0.69;0.20
+BOOKKEEPER;3;0.78;0.50;0.27;Naive Bayes;no feature selection;Oversampling;1.00;0.00;322.00;117.00;1.00;0.01;0.76;0.01
+BOOKKEEPER;4;0.83;0.50;0.32;Naive Bayes;no feature selection;Oversampling;50.00;7.00;296.00;93.00;0.88;0.35;0.84;0.39
+BOOKKEEPER;5;0.86;0.50;0.32;Naive Bayes;no feature selection;Oversampling;72.00;28.00;280.00;72.00;0.72;0.50;0.76;0.45
+BOOKKEEPER;6;0.83;0.50;0.08;Naive Bayes;no feature selection;Oversampling;20.00;62.00;574.00;33.00;0.24;0.38;0.74;0.22
+BOOKKEEPER;7;0.87;0.50;0.04;Naive Bayes;no feature selection;Oversampling;4.00;8.00;655.00;26.00;0.33;0.13;0.76;0.17
+BOOKKEEPER;8;0.90;0.50;0.07;Naive Bayes;no feature selection;Oversampling;3.00;86.00;564.00;43.00;0.03;0.07;0.70;-0.05
+BOOKKEEPER;9;0.96;0.50;0.09;Naive Bayes;no feature selection;Oversampling;9.00;12.00;296.00;20.00;0.43;0.31;0.88;0.31
+MEAN;;;;;;;;29.11;61.33;359.44;49.33;0.46;0.36;0.74;0.18
+;
+BOOKKEEPER;1;0.33;0.50;0.22;Naive Bayes;no feature selection;Undersampling;59.00;234.00;1.00;7.00;0.20;0.89;0.53;-0.05
+BOOKKEEPER;2;0.39;0.50;0.18;Naive Bayes;no feature selection;Undersampling;49.00;103.00;259.00;28.00;0.32;0.64;0.73;0.25
+BOOKKEEPER;3;0.50;0.50;0.27;Naive Bayes;no feature selection;Undersampling;1.00;2.00;320.00;117.00;0.33;0.01;0.56;0.00
+BOOKKEEPER;4;0.60;0.50;0.32;Naive Bayes;no feature selection;Undersampling;54.00;6.00;297.00;89.00;0.90;0.38;0.82;0.42
+BOOKKEEPER;5;0.68;0.50;0.32;Naive Bayes;no feature selection;Undersampling;52.00;13.00;295.00;92.00;0.80;0.36;0.83;0.37
+BOOKKEEPER;6;0.64;0.50;0.08;Naive Bayes;no feature selection;Undersampling;18.00;62.00;574.00;35.00;0.23;0.34;0.74;0.20
+BOOKKEEPER;7;0.66;0.50;0.04;Naive Bayes;no feature selection;Undersampling;1.00;0.00;663.00;29.00;1.00;0.03;0.76;0.06
+BOOKKEEPER;8;0.67;0.50;0.07;Naive Bayes;no feature selection;Undersampling;3.00;53.00;597.00;43.00;0.05;0.07;0.70;-0.01
+BOOKKEEPER;9;0.82;0.50;0.09;Naive Bayes;no feature selection;Undersampling;9.00;12.00;296.00;20.00;0.43;0.31;0.88;0.31
+MEAN;;;;;;;;27.33;53.89;366.89;51.11;0.47;0.34;0.73;0.17
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Naive Bayes;no feature selection;Smote;56.00;233.00;2.00;10.00;0.19;0.85;0.52;-0.06
+BOOKKEEPER;2;0.65;0.50;0.18;Naive Bayes;no feature selection;Smote;48.00;117.00;245.00;29.00;0.29;0.62;0.71;0.21
+BOOKKEEPER;3;0.78;0.50;0.27;Naive Bayes;no feature selection;Smote;3.00;1.00;321.00;115.00;0.75;0.03;0.52;0.03
+BOOKKEEPER;4;0.83;0.50;0.32;Naive Bayes;no feature selection;Smote;26.00;4.00;299.00;117.00;0.87;0.18;0.85;0.21
+BOOKKEEPER;5;0.86;0.50;0.32;Naive Bayes;no feature selection;Smote;76.00;32.00;276.00;68.00;0.70;0.53;0.77;0.45
+BOOKKEEPER;6;0.83;0.50;0.08;Naive Bayes;no feature selection;Smote;21.00;63.00;573.00;32.00;0.25;0.40;0.73;0.23
+BOOKKEEPER;7;0.87;0.50;0.04;Naive Bayes;no feature selection;Smote;6.00;7.00;656.00;24.00;0.46;0.20;0.77;0.26
+BOOKKEEPER;8;0.90;0.50;0.07;Naive Bayes;no feature selection;Smote;2.00;86.00;564.00;44.00;0.02;0.04;0.69;-0.06
+BOOKKEEPER;9;0.96;0.50;0.09;Naive Bayes;no feature selection;Smote;14.00;19.00;289.00;15.00;0.42;0.48;0.87;0.40
+MEAN;;;;;;;;28.00;62.44;358.33;50.44;0.44;0.37;0.71;0.19
+;
+BOOKKEEPER;1;0.44;0.30;0.22;Naive Bayes;Best First;no resample;29.00;80.00;155.00;37.00;0.27;0.44;0.51;0.08
+BOOKKEEPER;2;0.55;0.26;0.18;Naive Bayes;Best First;no resample;22.00;23.00;339.00;55.00;0.49;0.29;0.81;0.27
+BOOKKEEPER;3;0.69;0.22;0.27;Naive Bayes;Best First;no resample;0.00;0.00;322.00;118.00;0.00;0.00;0.00;0.00
+BOOKKEEPER;4;0.76;0.24;0.32;Naive Bayes;Best First;no resample;51.00;5.00;298.00;92.00;0.91;0.36;0.84;0.41
+BOOKKEEPER;5;0.81;0.26;0.32;Naive Bayes;Best First;no resample;32.00;2.00;306.00;112.00;0.94;0.22;0.79;0.27
+BOOKKEEPER;6;0.77;0.27;0.08;Naive Bayes;Best First;no resample;14.00;61.00;575.00;39.00;0.19;0.26;0.62;0.14
+BOOKKEEPER;7;0.81;0.22;0.04;Naive Bayes;Best First;no resample;3.00;23.00;640.00;27.00;0.12;0.10;0.71;0.07
+BOOKKEEPER;8;0.84;0.19;0.07;Naive Bayes;Best First;no resample;1.00;81.00;569.00;45.00;0.01;0.02;0.62;-0.08
+BOOKKEEPER;9;0.93;0.17;0.09;Naive Bayes;Best First;no resample;1.00;3.00;305.00;28.00;0.25;0.03;0.68;0.04
+MEAN;;;;;;;;17.00;30.89;389.89;61.44;0.35;0.19;0.62;0.13
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Naive Bayes;Best First;Oversampling;56.00;233.00;2.00;10.00;0.19;0.85;0.55;-0.06
+BOOKKEEPER;2;0.65;0.50;0.18;Naive Bayes;Best First;Oversampling;17.00;13.00;349.00;60.00;0.57;0.22;0.83;0.24
+BOOKKEEPER;3;0.78;0.50;0.27;Naive Bayes;Best First;Oversampling;52.00;74.00;248.00;66.00;0.41;0.44;0.70;0.21
+BOOKKEEPER;4;0.83;0.50;0.32;Naive Bayes;Best First;Oversampling;141.00;301.00;2.00;2.00;0.32;0.99;0.83;-0.00
+BOOKKEEPER;5;0.86;0.50;0.32;Naive Bayes;Best First;Oversampling;128.00;204.00;104.00;16.00;0.39;0.89;0.78;0.17
+BOOKKEEPER;6;0.83;0.50;0.08;Naive Bayes;Best First;Oversampling;50.00;583.00;53.00;3.00;0.08;0.94;0.62;0.00
+BOOKKEEPER;7;0.87;0.50;0.04;Naive Bayes;Best First;Oversampling;4.00;15.00;648.00;26.00;0.21;0.13;0.63;0.13
+BOOKKEEPER;8;0.90;0.50;0.07;Naive Bayes;Best First;Oversampling;2.00;3.00;647.00;44.00;0.40;0.04;0.69;0.07
+BOOKKEEPER;9;0.96;0.50;0.09;Naive Bayes;Best First;Oversampling;13.00;36.00;272.00;16.00;0.27;0.45;0.68;0.25
+MEAN;;;;;;;;51.44;162.44;258.33;27.00;0.31;0.55;0.70;0.11
+;
+BOOKKEEPER;1;0.33;0.50;0.22;Naive Bayes;Best First;Undersampling;59.00;234.00;1.00;7.00;0.20;0.89;0.53;-0.05
+BOOKKEEPER;2;0.39;0.50;0.18;Naive Bayes;Best First;Undersampling;39.00;50.00;312.00;38.00;0.44;0.51;0.73;0.35
+BOOKKEEPER;3;0.50;0.50;0.27;Naive Bayes;Best First;Undersampling;43.00;21.00;301.00;75.00;0.67;0.36;0.84;0.35
+BOOKKEEPER;4;0.60;0.50;0.32;Naive Bayes;Best First;Undersampling;141.00;301.00;2.00;2.00;0.32;0.99;0.82;-0.00
+BOOKKEEPER;5;0.68;0.50;0.32;Naive Bayes;Best First;Undersampling;49.00;11.00;297.00;95.00;0.82;0.34;0.86;0.36
+BOOKKEEPER;6;0.64;0.50;0.08;Naive Bayes;Best First;Undersampling;50.00;612.00;24.00;3.00;0.08;0.94;0.61;-0.00
+BOOKKEEPER;7;0.66;0.50;0.04;Naive Bayes;Best First;Undersampling;6.00;42.00;621.00;24.00;0.13;0.20;0.61;0.11
+BOOKKEEPER;8;0.67;0.50;0.07;Naive Bayes;Best First;Undersampling;2.00;100.00;550.00;44.00;0.02;0.04;0.59;-0.07
+BOOKKEEPER;9;0.82;0.50;0.09;Naive Bayes;Best First;Undersampling;11.00;38.00;270.00;18.00;0.22;0.38;0.67;0.20
+MEAN;;;;;;;;44.44;156.56;264.22;34.00;0.32;0.52;0.70;0.14
+;
+BOOKKEEPER;1;0.53;0.50;0.22;Naive Bayes;Best First;Smote;56.00;233.00;2.00;10.00;0.19;0.85;0.52;-0.06
+BOOKKEEPER;2;0.65;0.50;0.18;Naive Bayes;Best First;Smote;55.00;122.00;240.00;22.00;0.31;0.71;0.77;0.25
+BOOKKEEPER;3;0.78;0.50;0.27;Naive Bayes;Best First;Smote;46.00;1.00;321.00;72.00;0.98;0.39;0.89;0.48
+BOOKKEEPER;4;0.83;0.50;0.32;Naive Bayes;Best First;Smote;125.00;116.00;187.00;18.00;0.52;0.87;0.84;0.42
+BOOKKEEPER;5;0.86;0.50;0.32;Naive Bayes;Best First;Smote;136.00;301.00;7.00;8.00;0.31;0.94;0.70;-0.02
+BOOKKEEPER;6;0.83;0.50;0.08;Naive Bayes;Best First;Smote;47.00;605.00;31.00;6.00;0.07;0.89;0.64;-0.01
+BOOKKEEPER;7;0.87;0.50;0.04;Naive Bayes;Best First;Smote;6.00;37.00;626.00;24.00;0.14;0.20;0.74;0.12
+BOOKKEEPER;8;0.90;0.50;0.07;Naive Bayes;Best First;Smote;5.00;15.00;635.00;41.00;0.25;0.11;0.71;0.12
+BOOKKEEPER;9;0.96;0.50;0.09;Naive Bayes;Best First;Smote;10.00;24.00;284.00;19.00;0.29;0.34;0.73;0.25
+MEAN;;;;;;;;54.00;161.56;259.22;24.44;0.34;0.59;0.73;0.17
+;
+BOOKKEEPER;1;0.44;0.30;0.22;IBk;no feature selection;no resample;28.00;35.00;200.00;38.00;0.44;0.42;0.69;0.28
+BOOKKEEPER;2;0.55;0.26;0.18;IBk;no feature selection;no resample;38.00;80.00;282.00;39.00;0.32;0.49;0.67;0.23
+BOOKKEEPER;3;0.69;0.22;0.27;IBk;no feature selection;no resample;17.00;12.00;310.00;101.00;0.59;0.14;0.67;0.14
+BOOKKEEPER;4;0.76;0.24;0.32;IBk;no feature selection;no resample;73.00;46.00;257.00;70.00;0.61;0.51;0.74;0.38
+BOOKKEEPER;5;0.81;0.26;0.32;IBk;no feature selection;no resample;63.00;33.00;275.00;81.00;0.66;0.44;0.75;0.36
+BOOKKEEPER;6;0.77;0.27;0.08;IBk;no feature selection;no resample;24.00;138.00;498.00;29.00;0.15;0.45;0.68;0.12
+BOOKKEEPER;7;0.81;0.22;0.04;IBk;no feature selection;no resample;11.00;50.00;613.00;19.00;0.18;0.37;0.80;0.20
+BOOKKEEPER;8;0.84;0.19;0.07;IBk;no feature selection;no resample;16.00;38.00;612.00;30.00;0.30;0.35;0.78;0.27
+BOOKKEEPER;9;0.93;0.17;0.09;IBk;no feature selection;no resample;16.00;44.00;264.00;13.00;0.27;0.55;0.74;0.28
+MEAN;;;;;;;;31.78;52.89;367.89;46.67;0.39;0.41;0.72;0.25
+;
+BOOKKEEPER;1;0.53;0.50;0.22;IBk;no feature selection;Oversampling;36.00;59.00;176.00;30.00;0.38;0.55;0.64;0.25
+BOOKKEEPER;2;0.65;0.50;0.18;IBk;no feature selection;Oversampling;41.00;102.00;260.00;36.00;0.29;0.53;0.66;0.19
+BOOKKEEPER;3;0.78;0.50;0.27;IBk;no feature selection;Oversampling;22.00;33.00;289.00;96.00;0.40;0.19;0.68;0.10
+BOOKKEEPER;4;0.83;0.50;0.32;IBk;no feature selection;Oversampling;87.00;66.00;237.00;56.00;0.57;0.61;0.75;0.38
+BOOKKEEPER;5;0.86;0.50;0.32;IBk;no feature selection;Oversampling;78.00;68.00;240.00;66.00;0.53;0.54;0.73;0.32
+BOOKKEEPER;6;0.83;0.50;0.08;IBk;no feature selection;Oversampling;30.00;193.00;443.00;23.00;0.13;0.57;0.64;0.11
+BOOKKEEPER;7;0.87;0.50;0.04;IBk;no feature selection;Oversampling;19.00;74.00;589.00;11.00;0.20;0.63;0.81;0.26
+BOOKKEEPER;8;0.90;0.50;0.07;IBk;no feature selection;Oversampling;20.00;68.00;582.00;26.00;0.23;0.43;0.66;0.23
+BOOKKEEPER;9;0.96;0.50;0.09;IBk;no feature selection;Oversampling;18.00;57.00;251.00;11.00;0.24;0.62;0.69;0.25
+MEAN;;;;;;;;39.00;80.00;340.78;39.44;0.33;0.52;0.70;0.23
+;
+BOOKKEEPER;1;0.33;0.50;0.22;IBk;no feature selection;Undersampling;38.00;61.00;174.00;28.00;0.38;0.58;0.65;0.27
+BOOKKEEPER;2;0.39;0.50;0.18;IBk;no feature selection;Undersampling;45.00;116.00;246.00;32.00;0.28;0.58;0.65;0.18
+BOOKKEEPER;3;0.50;0.50;0.27;IBk;no feature selection;Undersampling;64.00;122.00;200.00;54.00;0.34;0.54;0.61;0.14
+BOOKKEEPER;4;0.60;0.50;0.32;IBk;no feature selection;Undersampling;98.00;81.00;222.00;45.00;0.55;0.69;0.73;0.39
+BOOKKEEPER;5;0.68;0.50;0.32;IBk;no feature selection;Undersampling;93.00;89.00;219.00;51.00;0.51;0.65;0.70;0.33
+BOOKKEEPER;6;0.64;0.50;0.08;IBk;no feature selection;Undersampling;33.00;218.00;418.00;20.00;0.13;0.62;0.64;0.10
+BOOKKEEPER;7;0.66;0.50;0.04;IBk;no feature selection;Undersampling;18.00;89.00;574.00;12.00;0.17;0.60;0.80;0.21
+BOOKKEEPER;8;0.67;0.50;0.07;IBk;no feature selection;Undersampling;28.00;97.00;553.00;18.00;0.22;0.61;0.77;0.26
+BOOKKEEPER;9;0.82;0.50;0.09;IBk;no feature selection;Undersampling;19.00;77.00;231.00;10.00;0.20;0.66;0.72;0.20
+MEAN;;;;;;;;48.44;105.56;315.22;30.00;0.31;0.61;0.70;0.23
+;
+BOOKKEEPER;1;0.53;0.50;0.22;IBk;no feature selection;Smote;30.00;44.00;191.00;36.00;0.41;0.45;0.68;0.26
+BOOKKEEPER;2;0.65;0.50;0.18;IBk;no feature selection;Smote;45.00;111.00;251.00;32.00;0.29;0.58;0.67;0.20
+BOOKKEEPER;3;0.78;0.50;0.27;IBk;no feature selection;Smote;47.00;109.00;213.00;71.00;0.30;0.40;0.58;0.05
+BOOKKEEPER;4;0.83;0.50;0.32;IBk;no feature selection;Smote;80.00;66.00;237.00;63.00;0.55;0.56;0.73;0.34
+BOOKKEEPER;5;0.86;0.50;0.32;IBk;no feature selection;Smote;75.00;62.00;246.00;69.00;0.55;0.52;0.72;0.32
+BOOKKEEPER;6;0.83;0.50;0.08;IBk;no feature selection;Smote;31.00;181.00;455.00;22.00;0.15;0.58;0.69;0.13
+BOOKKEEPER;7;0.87;0.50;0.04;IBk;no feature selection;Smote;11.00;110.00;553.00;19.00;0.09;0.37;0.75;0.08
+BOOKKEEPER;8;0.90;0.50;0.07;IBk;no feature selection;Smote;16.00;148.00;502.00;30.00;0.10;0.35;0.69;0.05
+BOOKKEEPER;9;0.96;0.50;0.09;IBk;no feature selection;Smote;17.00;95.00;213.00;12.00;0.15;0.59;0.67;0.12
+MEAN;;;;;;;;39.11;102.89;317.89;39.33;0.29;0.49;0.69;0.17
+;
+BOOKKEEPER;1;0.44;0.30;0.22;IBk;Best First;no resample;28.00;36.00;199.00;38.00;0.44;0.42;0.68;0.27
+BOOKKEEPER;2;0.55;0.26;0.18;IBk;Best First;no resample;41.00;87.00;275.00;36.00;0.32;0.53;0.66;0.23
+BOOKKEEPER;3;0.69;0.22;0.27;IBk;Best First;no resample;59.00;36.00;286.00;59.00;0.62;0.50;0.73;0.41
+BOOKKEEPER;4;0.76;0.24;0.32;IBk;Best First;no resample;60.00;16.00;287.00;83.00;0.79;0.42;0.72;0.42
+BOOKKEEPER;5;0.81;0.26;0.32;IBk;Best First;no resample;72.00;12.00;296.00;72.00;0.86;0.50;0.87;0.52
+BOOKKEEPER;6;0.77;0.27;0.08;IBk;Best First;no resample;38.00;168.00;468.00;15.00;0.18;0.72;0.75;0.19
+BOOKKEEPER;7;0.81;0.22;0.04;IBk;Best First;no resample;13.00;37.00;626.00;17.00;0.26;0.43;0.78;0.29
+BOOKKEEPER;8;0.84;0.19;0.07;IBk;Best First;no resample;16.00;44.00;606.00;30.00;0.27;0.35;0.77;0.25
+BOOKKEEPER;9;0.93;0.17;0.09;IBk;Best First;no resample;12.00;45.00;263.00;17.00;0.21;0.41;0.70;0.19
+MEAN;;;;;;;;37.67;53.44;367.33;40.78;0.44;0.48;0.74;0.31
+;
+BOOKKEEPER;1;0.53;0.50;0.22;IBk;Best First;Oversampling;33.00;60.00;175.00;33.00;0.35;0.50;0.63;0.21
+BOOKKEEPER;2;0.65;0.50;0.18;IBk;Best First;Oversampling;48.00;111.00;251.00;29.00;0.30;0.62;0.69;0.22
+BOOKKEEPER;3;0.78;0.50;0.27;IBk;Best First;Oversampling;72.00;77.00;245.00;46.00;0.48;0.61;0.74;0.34
+BOOKKEEPER;4;0.83;0.50;0.32;IBk;Best First;Oversampling;73.00;36.00;267.00;70.00;0.67;0.51;0.69;0.42
+BOOKKEEPER;5;0.86;0.50;0.32;IBk;Best First;Oversampling;99.00;33.00;275.00;45.00;0.75;0.69;0.87;0.59
+BOOKKEEPER;6;0.83;0.50;0.08;IBk;Best First;Oversampling;39.00;242.00;394.00;14.00;0.14;0.74;0.71;0.12
+BOOKKEEPER;7;0.87;0.50;0.04;IBk;Best First;Oversampling;15.00;64.00;599.00;15.00;0.19;0.50;0.77;0.23
+BOOKKEEPER;8;0.90;0.50;0.07;IBk;Best First;Oversampling;18.00;46.00;604.00;28.00;0.28;0.39;0.70;0.27
+BOOKKEEPER;9;0.96;0.50;0.09;IBk;Best First;Oversampling;13.00;54.00;254.00;16.00;0.19;0.45;0.65;0.17
+MEAN;;;;;;;;45.56;80.33;340.44;32.89;0.37;0.56;0.72;0.29
+;
+BOOKKEEPER;1;0.33;0.50;0.22;IBk;Best First;Undersampling;39.00;62.00;173.00;27.00;0.39;0.59;0.66;0.27
+BOOKKEEPER;2;0.39;0.50;0.18;IBk;Best First;Undersampling;55.00;144.00;218.00;22.00;0.28;0.71;0.66;0.19
+BOOKKEEPER;3;0.50;0.50;0.27;IBk;Best First;Undersampling;87.00;72.00;250.00;31.00;0.55;0.74;0.80;0.46
+BOOKKEEPER;4;0.60;0.50;0.32;IBk;Best First;Undersampling;89.00;62.00;241.00;54.00;0.59;0.62;0.74;0.41
+BOOKKEEPER;5;0.68;0.50;0.32;IBk;Best First;Undersampling;99.00;32.00;276.00;45.00;0.76;0.69;0.88;0.60
+BOOKKEEPER;6;0.64;0.50;0.08;IBk;Best First;Undersampling;41.00;255.00;381.00;12.00;0.14;0.77;0.68;0.12
+BOOKKEEPER;7;0.66;0.50;0.04;IBk;Best First;Undersampling;21.00;96.00;567.00;9.00;0.18;0.70;0.84;0.23
+BOOKKEEPER;8;0.67;0.50;0.07;IBk;Best First;Undersampling;28.00;108.00;542.00;18.00;0.21;0.61;0.76;0.23
+BOOKKEEPER;9;0.82;0.50;0.09;IBk;Best First;Undersampling;18.00;78.00;230.00;11.00;0.19;0.62;0.70;0.18
+MEAN;;;;;;;;53.00;101.00;319.78;25.44;0.36;0.67;0.75;0.30
+;
+BOOKKEEPER;1;0.53;0.50;0.22;IBk;Best First;Smote;30.00;45.00;190.00;36.00;0.40;0.45;0.67;0.25
+BOOKKEEPER;2;0.65;0.50;0.18;IBk;Best First;Smote;45.00;93.00;269.00;32.00;0.33;0.58;0.68;0.25
+BOOKKEEPER;3;0.78;0.50;0.27;IBk;Best First;Smote;75.00;55.00;267.00;43.00;0.58;0.64;0.76;0.45
+BOOKKEEPER;4;0.83;0.50;0.32;IBk;Best First;Smote;79.00;58.00;245.00;64.00;0.58;0.55;0.73;0.37
+BOOKKEEPER;5;0.86;0.50;0.32;IBk;Best First;Smote;108.00;56.00;252.00;36.00;0.66;0.75;0.83;0.55
+BOOKKEEPER;6;0.83;0.50;0.08;IBk;Best First;Smote;45.00;216.00;420.00;8.00;0.17;0.85;0.76;0.18
+BOOKKEEPER;7;0.87;0.50;0.04;IBk;Best First;Smote;15.00;100.00;563.00;15.00;0.13;0.50;0.79;0.15
+BOOKKEEPER;8;0.90;0.50;0.07;IBk;Best First;Smote;19.00;103.00;547.00;27.00;0.16;0.41;0.75;0.14
+BOOKKEEPER;9;0.96;0.50;0.09;IBk;Best First;Smote;14.00;91.00;217.00;15.00;0.13;0.48;0.64;0.09
+MEAN;;;;;;;;47.78;90.78;330.00;30.67;0.35;0.58;0.73;0.27
+;

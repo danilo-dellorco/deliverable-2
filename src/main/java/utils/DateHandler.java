@@ -1,4 +1,4 @@
-package tools;
+package utils;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -11,7 +11,7 @@ public class DateHandler {
 	
 	private DateHandler() {}
 	
-	/*
+	/**
 	 * Converte una data Date in un LocalDate
 	 */
 	public static LocalDate convertToLocalDate(Date dateToConvert) {
@@ -21,7 +21,7 @@ public class DateHandler {
 	}
 	
 	
-	/*
+	/**
 	 * Converte una data come stringa in un oggetto LocalDate
 	 */
 	public static LocalDate stringToDate(String s) {
@@ -30,7 +30,7 @@ public class DateHandler {
 	}
 	
 	
-	/*
+	/**
 	 * Ricava un oggetto Date dai millisecondi
 	 */
 	public static Date getDateFromEpoch(long millisecondsFromEpoch) {
@@ -40,7 +40,7 @@ public class DateHandler {
 	}
 	
 	
-	/*
+	/**
 	 * Calcola la differenza in settimane tra due date
 	 */
 	public static int getWeeksBetweenDates(Date date1, Date date2) {

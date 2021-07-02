@@ -17,35 +17,34 @@ public class GitCommit {
 	JiraTicket ticket;
 	PersonIdent author;
 	
-
+	
 	public GitCommit(ObjectId id, Date date, String message) {
 		this.id = id;
 		this.date = date;
 		this.message = message;
 	}
 
-	/*
+	/**
 	 * Ritorna true se il commit ha nel messaggio il ticketID specificato in input
-	 */
+	 **/
 	public boolean hasTicketName(String ticketName) {
 		int index = this.message.indexOf(ticketName);
 		return (index!=-1);
 	}
 	
-	/*
+	/**
 	 * [DEBUG] Stampa a schermo tutte le informazioni del GitCommit
-	 */
+	 **/
 	public void print() {
 		String output = String.format("ID: %s%ndate: %s%nmessage: %s", this.id, this.date, this.message);
 
 		System.out.println(output);
 		System.out.println("=".repeat(200));
 	}
-
 	
-	/*
+	/**
 	 * [DEBUG] Stampa a schermo tutte le informazioni del GitCommit senza messaggio
-	 */
+	 **/
 	public void printNoMsg() {
 		String output = String.format("ID: %s%ndate: %s", this.id, this.date);
 

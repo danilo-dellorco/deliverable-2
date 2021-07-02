@@ -5,7 +5,7 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 
-public class WekaResult {
+public class WekaMetrics {
 	double tp;
 	double fp;
 	double tn;
@@ -15,7 +15,7 @@ public class WekaResult {
 	double auc;
 	double kappa;
 	
-	private boolean mean;
+	private boolean mean;	// Specifica se il risultato è relativo alla media.
 	
 	private String projName;
 	private int numTrainingRelease;
@@ -27,7 +27,7 @@ public class WekaResult {
 	private String featureSelectionName;
 	private String resamplingMethodName;
 	
-	public WekaResult(String classifierName, String featureSelectionName, String resamplingMethodName) {
+	public WekaMetrics(String classifierName, String featureSelectionName, String resamplingMethodName) {
 		super();
 		this.setClassifierName(classifierName);
 		this.setFeatureSelectionName(featureSelectionName);
@@ -94,7 +94,7 @@ public class WekaResult {
 		return str;
 	}
 	
-	public void setTotalValues(WekaResult result) {
+	public void setTotalValues(WekaMetrics result) {
 		this.tp = this.tp + result.getTP();
 		this.tn = this.tn + result.getTN();
 		this.fp = this.fp + result.getFP();
@@ -105,7 +105,10 @@ public class WekaResult {
 		this.auc = this.auc + result.getAuc();
 	}
 	
-	public void calculateMean(int releases) {
+	/**
+	 * Calcola la media di tutte le metriche utilizzate
+	 */
+	public void calculateMean(double releases) {
 		tp = tp/releases;
 		fp = fp/releases;
 		fn = fn/releases;

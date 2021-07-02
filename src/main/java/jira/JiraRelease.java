@@ -12,9 +12,9 @@ public class JiraRelease {
 		this.date = date;
 	}
 	
-	/*
+	/**
 	 * [DEBUG] Stampa a schermo tutte le informazioni su una JiraRelease
-	 */
+	 **/
 	public void print() {
 		String output = String.format("Name: %s%ndate: %s%nID: %d",this.name,this.date,this.id);
 		

@@ -26,8 +26,8 @@ import api.GitHubAPI;
 import data.ProjectClass;
 import jira.JiraRelease;
 import jira.JiraTicket;
-import tools.DateHandler;
-import tools.Parameters;
+import utils.DateHandler;
+import utils.Parameters;
 
 public class GitRepo {
 
@@ -49,7 +49,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Ritorna la lista di tutti i commit effettuati sulla branch di default. Instanziamo un oggetto
 	 * GitCommit soltanto per i commit presenti anche su Jira, in modo da aumentare le prestazioni.
 	 */
@@ -80,7 +80,7 @@ public class GitRepo {
 		orderCommitList();
 	}
 
-	/*
+	/**
 	 * Ordina la lista dei commit in base alla data e la setta nel parametro di classe
 	 */
 	public void orderCommitList() {
@@ -88,7 +88,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Ottiene la lista di tutte le release della repository Git
 	 */
 	public void fetchReleases() throws IOException {
@@ -123,7 +123,7 @@ public class GitRepo {
 	}
 	
 	
-	/*
+	/**
 	 * Per ogni classe di ogni release, imposto (di default) la data di aggiunta su Git come la data della
 	 * prima release.
 	 */
@@ -137,7 +137,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Ottiene la lista dei commit tra una release e quella successiva. Utilizzata
 	 * per assegnare ad ogni revisione la relativa release
 	 */
@@ -161,7 +161,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Assegna a tutti i commit della repository la relativa release, iterando il metodo getRevisionsBetweenTwoReleases()
 	 */
 	public void bindRevisionsToReleases() {
@@ -238,7 +238,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Ritorna la release tramite il nome della versione (es. 4.4.0)
 	 */
 	public GitRelease getReleaseByName(String version) {
@@ -251,7 +251,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Imposta tutte le metriche tramite i diff di ogni commit. In particolare
 	 * esamina tutte le DiffEntry del commit in input ed in base al tipo di commit (Revision/FixBug)
 	 * e al tipo di Diff (ADD/MODIFY/RENAME) calcola le metriche opportune
@@ -314,7 +314,7 @@ public class GitRepo {
 	}
 
 	
-	/*
+	/**
 	 * Imposta la buggyness di una classe in tutte le Affected Versions. Viene settata la buggyness partendo
 	 * dall'ultima AV (versione precedente al Fix) fino alla prima AV (injected version)
 	 */
@@ -334,7 +334,7 @@ public class GitRepo {
 	
 	
 	
-	/*
+	/**
 	 * Imposta l'addition di una classe come la data del commit dove è stato effettuato
 	 * l'ADD della classe. Si esegue un ciclo su tutte le versioni successive per impostare la stessa
 	 * data di aggiunta per la stessa classe nelle altre releases.
@@ -351,7 +351,7 @@ public class GitRepo {
 	}
 	
 	
-	/*
+	/**
 	 * Ritorna tutte le classi del progetto nelle varie release. Inoltre calcola l'AGE di ognuna delle classi
 	 * come la differenza tra la data di aggiunta e la data della release della classe.
 	 */
@@ -370,7 +370,7 @@ public class GitRepo {
 	}
 	
 	
-	/*
+	/**
 	 * Ritorna tutte le release successive ad una release passata in input
 	 */
 	public List<GitRelease> getReleasesFrom(GitRelease start){
@@ -384,10 +384,10 @@ public class GitRepo {
 	}
 	
 	
-	/*
+	/**
 	 * Calcola ed imposta tutte le metriche relative alle classi del progetto. Esegue il metodo
 	 * calcMetricsFromDiff() passando in input tutti i commit del progetto.
-	 */
+	 **/
 	public void setMetrics() throws IOException {
 		for (GitCommit c : this.commitList) {			
 			calcMetricsFromDiff(c);

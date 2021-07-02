@@ -14,14 +14,14 @@ import git.GitRelease;
 import git.GitRepo;
 import jira.JiraProject;
 import jira.JiraTicket;
-import tools.CSVWriter;
-import tools.Parameters;
-import tools.PathHandler;
+import utils.CSVHandler;
+import utils.Parameters;
+import utils.PathHandler;
 
-public class DatasetBuilder {
+public class CreateDataset {
 
 	public void create(String projName) throws GitAPIException, IOException{
-		Logger logger = Logger.getLogger(DatasetBuilder.class.getName());
+		Logger logger = Logger.getLogger(CreateDataset.class.getName());
 		String repoURL = String.format("https://github.com/%s/%s", Parameters.GIT_PROJ_ORG, Parameters.GIT_PROJ_NAME);
 		String gitFolderPath = PathHandler.getGitPath() + Parameters.GIT_PROJ_NAME;
 		GitRepo repository = new GitRepo(repoURL, gitFolderPath);
@@ -49,14 +49,14 @@ public class DatasetBuilder {
 		
 		// Genero il dataset
 		logger.log(Level.INFO,"Writing CSV...");
-		CSVWriter.writeClassOnCSV(projectClassList, Parameters.BOOKKEEPER, Parameters.DATASET_CSV);
-		CSVWriter.writeCSVForWeka(projectClassList, Parameters.BOOKKEEPER, Parameters.WEKA_CSV);
+		CSVHandler.writeClassOnCSV(projectClassList, Parameters.BOOKKEEPER, Parameters.DATASET_CSV);
+		CSVHandler.writeCSVForWeka(projectClassList, Parameters.BOOKKEEPER, Parameters.WEKA_CSV);
 		
 		logger.log(Level.INFO,"CSV written successfully.\nEnd of the program.");
 	}
 	
 	public static void main(String[] args) throws GitAPIException, IOException {
-		DatasetBuilder builder = new DatasetBuilder();
+		CreateDataset builder = new CreateDataset();
 		builder.create(Parameters.BOOKKEEPER);
 	}
 }
