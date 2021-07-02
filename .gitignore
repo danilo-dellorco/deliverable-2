@@ -1,3 +1,4 @@
+#Maven output folder
 /target/
 
 # Eclipse Core      
@@ -8,9 +9,3 @@
 
 # Bin Folder
 /bin/
-
-# Output Folder
-/output/
-
-# Settings file of the project
-paths.config
