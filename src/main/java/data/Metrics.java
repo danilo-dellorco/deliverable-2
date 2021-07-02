@@ -57,7 +57,7 @@ public class Metrics {
 
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			line = line.replace("\s", "");
+			line = line.replace("\\s", "");
 			if (!(line.startsWith("/") || line.startsWith("*") || line.startsWith("//") || line.startsWith("*/")
 					|| line.equalsIgnoreCase(""))) {
 				calcSize = calcSize + 1;
