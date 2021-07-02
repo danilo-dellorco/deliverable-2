@@ -9,18 +9,17 @@ public class Parameters {
 	
 	// Projects Names
 	public static final String BOOKKEEPER = "BOOKKEEPER";
-	public static final String SECONDOPROG = "FALEXI";
+	public static final String SYNCOPE = "SYNCOPE";
 	
 	// Projects settings
-	public static final String GIT_PROJ_ORG = "apache";
-	public static final String GIT_PROJ_NAME = "bookkeeper";
-	public static final String JIRA_PROJ_NAME = "BOOKKEEPER";
+	public static final String PROJ_ORG = "apache";
 	public static final String REST_API = "https://issues.apache.org/jira/rest/api/2/project/";
 	
 	// Strings settings
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
 	public static final String TAG_FORMAT = "/ref/tags/";
-	public static final String FILTER_REL_NAME = "release-";
+	public static final String BOOKKEEPER_FILTER_REL = "release-";
+	public static final String SYNCOPE_FILTER_REL = "syncope-";
 	public static final String FILTER_FILE_TYPE = ".java";
 	public static final String RELEASED_JSON = "released";
 	public static final String NAME_JSON = "name";

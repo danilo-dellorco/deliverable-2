@@ -14,6 +14,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Ref;
 
 import git.GitRelease;
+import utils.Parameters;
 
 public class GitHubAPI {
 	
@@ -23,12 +24,13 @@ public class GitHubAPI {
 	 * dall'URL GitHub, altrimenti apre la copia della repository già presente in
 	 * locale
 	 **/
-	public static Git initializeRepository(String remote, String local) throws GitAPIException, IOException {
+	public static Git initializeRepository(String projectName, String local) throws GitAPIException, IOException {
 		Git git;
+		String repoURL = String.format("https://github.com/%s/%s", Parameters.PROJ_ORG, projectName.toLowerCase());
 		Logger logger = Logger.getLogger("GitHubAPI");
 		if (!Files.exists(Paths.get(local))) {
 			logger.log(Level.INFO, "Starting Cloning Repository");
-			git = Git.cloneRepository().setURI(remote).setDirectory(new File(local)).call();
+			git = Git.cloneRepository().setURI(repoURL).setDirectory(new File(local)).call();
 			logger.log(Level.INFO, "Repository cloned Succesfully");
 		} else {
 			logger.log(Level.INFO, "Local Git Repository Found. Opening.");

@@ -30,21 +30,28 @@ import utils.DateHandler;
 import utils.Parameters;
 
 public class GitRepo {
-
-	String remote;
+	String projectName;
+	String releaseFilter;
 	String local;
 	List<GitCommit> commitList;
 	List<GitCommit> fixCommitList;
 	List<GitRelease> releaseList;
 	private Git git;
 
-	public GitRepo(String remote, String local) throws GitAPIException, IOException {
-		this.remote = remote;
+	public GitRepo(String projectName, String local) throws GitAPIException, IOException {
+		this.projectName = projectName;
 		this.local = local;
 		this.commitList = new ArrayList<>();
 		this.fixCommitList = new ArrayList<>();
 		this.releaseList = new ArrayList<>();
-		this.git = GitHubAPI.initializeRepository(remote, local);
+		this.git = GitHubAPI.initializeRepository(projectName, local);
+		if (projectName.equals(Parameters.BOOKKEEPER)) {
+			releaseFilter = Parameters.BOOKKEEPER_FILTER_REL;
+		}
+		else {
+			releaseFilter = Parameters.SYNCOPE_FILTER_REL;
+		}
+		
 		this.fetchReleases();
 	}
 
@@ -105,7 +112,7 @@ public class GitRepo {
 		for (Ref tag : tagList) {
 
 			String tagName = tag.getName();
-			String releaseName = tagName.substring((Parameters.FILTER_REL_NAME + Parameters.TAG_FORMAT).length());
+			String releaseName = tagName.substring((releaseFilter + Parameters.TAG_FORMAT).length());
 
 			// Alcuni tag contengono una versione per docker e non una release
 			if (releaseName.contains("docker")) {
