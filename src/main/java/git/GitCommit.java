@@ -16,12 +16,14 @@ public class GitCommit {
 	GitRelease release;
 	JiraTicket ticket;
 	PersonIdent author;
+	boolean fixCommit;
 	
 	
 	public GitCommit(ObjectId id, Date date, String message) {
 		this.id = id;
 		this.date = date;
 		this.message = message;
+		this.fixCommit = false;
 	}
 
 	/**
@@ -46,7 +48,7 @@ public class GitCommit {
 	 * [DEBUG] Stampa a schermo tutte le informazioni del GitCommit senza messaggio
 	 **/
 	public void printNoMsg() {
-		String output = String.format("ID: %s%ndate: %s", this.id, this.date);
+		String output = String.format("ID: %s%ndate: %s%nfix: %s", this.id, this.date, this.fixCommit);
 
 		System.out.println(output);
 		System.out.println("=".repeat(200));
@@ -111,5 +113,12 @@ public class GitCommit {
 	public void setAuthor(PersonIdent author) {
 		this.author = author;
 	}
-	
+
+	public boolean isFixCommit() {
+		return fixCommit;
+	}
+
+	public void setFixCommit(boolean fixCommit) {
+		this.fixCommit = fixCommit;
+	}
 }

@@ -2,6 +2,7 @@ package data;
 
 import java.util.Date;
 
+import git.GitCommit;
 import git.GitRelease;
 import utils.PathHandler;
 
@@ -11,7 +12,7 @@ import utils.PathHandler;
 public class ProjectClass {
 	
 	// Attributi della classe
-	private boolean buggyness;
+	private boolean buggyness = false;
 	
 	public ProjectClass (String path, String name, GitRelease release){
 		this.path = path;
@@ -22,6 +23,7 @@ public class ProjectClass {
 	private String path;
 	private String name;
 	private GitRelease release;
+	private GitCommit commit;
 	private Date dateAdded;
 	private Metrics metrics;
 	
@@ -78,7 +80,14 @@ public class ProjectClass {
 		this.buggyness = buggyness;
 	}
 	
-	
+	public GitCommit getCommit() {
+		return commit;
+	}
+
+	public void setCommit(GitCommit commit) {
+		this.commit = commit;
+	}
+
 	public void print() {
 		System.out.println("Class Name: "+this.path);
 		System.out.println("Class Rele: "+this.release.getName());
@@ -86,5 +95,6 @@ public class ProjectClass {
 			System.out.println("Class Date: "+this.getDateAdded());
 			System.out.println("Reles Date: "+this.release.getDate());
 		}
+		System.out.println ("Buggyness: " + buggyness);
 	}
 }

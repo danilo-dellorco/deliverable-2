@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -88,5 +89,16 @@ public class GitHubAPI {
 			}
 		}
 		return latest;
+	}
+	
+	public static List<GitRelease> getReleaseBefore(List<GitRelease> versions, GitRelease lastRelease) {
+		List<GitRelease> beforeList = new ArrayList<>();
+		for (GitRelease r:versions) {
+			if (r.equals(lastRelease)) {
+				return beforeList;
+			}
+			beforeList.add(r);
+		}
+		return beforeList;
 	}
 }

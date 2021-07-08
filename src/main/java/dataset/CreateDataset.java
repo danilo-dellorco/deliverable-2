@@ -21,6 +21,10 @@ import utils.PathHandler;
 
 public class CreateDataset {
 //TODO vedere buggyness syncope
+	//TODO portare classi avanti come fabiano ma è complicato
+	// TODO tutte altre strade non percorribili
+	//TODO vedere se tipo si possono prendere file da release veramente precedente o cose simili 
+	// TODO vedere se fare funzione checkInconsistency per controllare se 1.2.9 sta dopo 2.0.0
 	
 	
 	public void create(String projName) throws GitAPIException, IOException{
@@ -28,15 +32,10 @@ public class CreateDataset {
 		String gitFolderPath = PathHandler.getGitPath() + projName.toLowerCase();
 		GitRepo repository = new GitRepo(projName.toLowerCase(), gitFolderPath);
 		JiraProject jiraClient = new JiraProject(projName);
-		
-		Debug.printJiraReleaseList(jiraClient.getReleaseList(), false);
-		Debug.printGitReleaseList(repository.getReleaseList(), false);
+
 		
 		// Mantengo soltanto le GitRelease che hanno una corrispettiva release su Jira
-		List<GitRelease> commonReleases = repository.filterReleases(jiraClient.getReleaseList(), repository.getReleaseList());	
-		
-		Debug.printGitReleaseList(commonReleases, false);
-		repository.setReleaseList(commonReleases);	// Imposto come lista delle release solo quelle presenti anche su Jira
+		repository.setCommonReleases(jiraClient.getReleaseList());
 		repository.fetchCommits();					// Chiamato dopo aver impostato le release comuni in GitRepo così da prendere solo i commit delle release Jira
 		repository.bindRevisionsToReleases();		// Associa ad ogni commit/revisione la relativa release
 		
@@ -53,18 +52,19 @@ public class CreateDataset {
 
 		// Ottengo tutta la lista delle classi e calcolo per ognuna anche l'Age
 		List<ProjectClass> projectClassList = repository.getAllProjectClasses();
+		Debug.countBuggyClass(projectClassList);
 		
 		// Genero il dataset
-		logger.log(Level.INFO,"Writing CSV...");
+		logger.log(Level.INFO,"Writing data on CSV...");
 		CSVHandler.writeClassOnCSV(projectClassList, projName, Parameters.DATASET_CSV);
 		CSVHandler.writeCSVForWeka(projectClassList, projName, Parameters.WEKA_CSV);
 		
-		logger.log(Level.INFO,"CSV written successfully.\nEnd of the program.");
+		logger.log(Level.INFO,"CSV write completed succesfullt.\nDataset Created.");
 	}
 	
 	public static void main(String[] args) throws GitAPIException, IOException {
 		CreateDataset builder = new CreateDataset();
-//		builder.create(Parameters.BOOKKEEPER);
+		builder.create(Parameters.BOOKKEEPER);
 		builder.create(Parameters.SYNCOPE);
 	}
 }

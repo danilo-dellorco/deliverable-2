@@ -45,14 +45,17 @@ public class GitRepo {
 		this.fixCommitList = new ArrayList<>();
 		this.releaseList = new ArrayList<>();
 		this.git = GitHubAPI.initializeRepository(projectName, local);
+		this.releaseFilter = fetchReleaseFilter();
+//		this.releaseList = fetchReleases();
+	}
+	
+	public String fetchReleaseFilter() {
 		if (projectName.equals(Parameters.BOOKKEEPER)) {
-			releaseFilter = Parameters.BOOKKEEPER_FILTER_REL;
+			return Parameters.BOOKKEEPER_FILTER_REL;
 		}
 		else {
-			releaseFilter = Parameters.SYNCOPE_FILTER_REL;
+			return Parameters.SYNCOPE_FILTER_REL;
 		}
-		
-		this.fetchReleases();
 	}
 
 	
@@ -72,8 +75,6 @@ public class GitRepo {
 		for (RevCommit c : logCommits) {
 			Date date = DateHandler.getDateFromEpoch(c.getCommitTime() * 1000L);
 			ObjectId parentID = null;
-			
-			// PersonIndent per NAuthors metric
 			
 			if (c.getParentCount() != 0) {
 				parentID = c.getParent(0);
@@ -98,8 +99,9 @@ public class GitRepo {
 	/**
 	 * Ottiene la lista di tutte le release della repository Git
 	 */
-	public void fetchReleases() throws IOException {
+	public List<GitRelease> fetchReleases() throws IOException {
 		List<Ref> tagList = null;
+		List<GitRelease> fetchedReleases = new ArrayList<>();
 		try {
 			tagList = git.tagList().call();
 
@@ -108,7 +110,7 @@ public class GitRepo {
 		}
 
 		RevWalk walk = new RevWalk(this.git.getRepository());
-
+		
 		for (Ref tag : tagList) {
 
 			String tagName = tag.getName();
@@ -123,10 +125,11 @@ public class GitRepo {
 
 			GitCommit gitCommit = new GitCommit(commit.getId(), releaseDate, commit.getFullMessage());
 			GitRelease release = new GitRelease(this.git, gitCommit, releaseName, releaseDate);
-			this.releaseList.add(release);
+			fetchedReleases.add(release);
+
 		}
-		setDefaultAdditionDates();
 		walk.close();
+		return fetchedReleases;
 	}
 	
 	
@@ -134,9 +137,9 @@ public class GitRepo {
 	 * Per ogni classe di ogni release, imposto (di default) la data di aggiunta su Git come la data della
 	 * prima release.
 	 */
-	public void setDefaultAdditionDates() {
-		Date oldest = GitHubAPI.getOldestGitRelease(this.releaseList).getDate();
-		for (GitRelease r:this.releaseList) {
+	public void setDefaultAdditionDates(List<GitRelease> releases) {
+		Date oldest = GitHubAPI.getOldestGitRelease(releases).getDate();
+		for (GitRelease r:releases) {
 			for (ProjectClass p:r.getClassList()) {
 				p.setDateAdded(oldest);
 			}
@@ -203,6 +206,7 @@ public class GitRepo {
 			for (GitCommit c : this.commitList) {
 				if (c.hasTicketName(t.getName())) {
 					filtered.add(c);
+					c.setFixCommit(true);
 					c.setTicket(t);
 					founded = true;
 					break;
@@ -220,13 +224,16 @@ public class GitRepo {
 	/**
 	 * Effettua il mapping tra le release Jira e quelle Git. Vengono
 	 * scartate le release Git che non sono state inserite su Jira.
+	 * @throws IOException 
 	 */
-	public List<GitRelease> filterReleases(List<JiraRelease> jiraReleases, List<GitRelease> gitReleases) {
+	public void setCommonReleases(List<JiraRelease> jiraReleases) throws IOException {
 		List<GitRelease> commonReleases = new ArrayList<>();
+		List<GitRelease> gitReleases = fetchReleases();
 
 		for (JiraRelease jR : jiraReleases) {
 			for (GitRelease gR : gitReleases) {
 				if (gR.getName().equals(jR.getName())) {
+					gR.fetchClassList();
 					commonReleases.add(gR);
 					jR.setReleaseDate(DateHandler.convertToLocalDate(gR.getDate()));
 					break;
@@ -241,12 +248,14 @@ public class GitRepo {
 			commonReleases.get(i).setId(i + 1);
 			jiraReleases.get(i).setID(i + 1);
 		}
-		return commonReleases;
+		
+		setDefaultAdditionDates(commonReleases);
+		this.releaseList = commonReleases;
 	}
 
 	
 	/**
-	 * Ritorna la release tramite il nome della versione (es. 4.4.0)
+	 * Ritorna la release tramite il nome della versione (es. 6.3.18)
 	 */
 	public GitRelease getReleaseByName(String version) {
 		for (GitRelease r : this.releaseList) {
@@ -272,24 +281,25 @@ public class GitRepo {
 			diffFormatter.setRepository(git.getRepository());
 			diffFormatter.setDiffComparator(RawTextComparator.DEFAULT);
 			diffFormatter.setDetectRenames(true);
-
+		
 		List<DiffEntry> diffEntries = diffFormatter.scan(commit.getParentID(), commit.getId());
 		List<DiffEntry> javaDiffs = GitDiff.filterJavaDiff(diffEntries);
 		diffFormatter.flush();
 		diffFormatter.close();
 		int chgSetSize = diffEntries.size();
+//		System.out.println(chgSetSize);
 		
 		for (DiffEntry d : javaDiffs) {
 			gitDiff = new GitDiff(d);						
 			releaseClass = commit.getRelease();
 			pathClass = gitDiff.getPath();
 			
-			// Gestione del Rename
-			if (gitDiff.isRename()) {
-				pathClass = gitDiff.getRenamePaths().get(1);
-			}
-			
 			ProjectClass projectClass = releaseClass.getProjectClass(pathClass);
+			
+			if (gitDiff.isRename() && commit.isFixCommit()) {
+				String oldPath = d.getOldPath();
+				setBuggynessWithAV(commit, oldPath);
+			}
 			
 			// Se la classe è stata cancellata, non esiste al momento della release quindi non và considerata
 			if (projectClass == null) {
@@ -301,16 +311,16 @@ public class GitRepo {
 				setAdditionDateOverReleases(projectClass, commit);
 			}
 			
-			// Se il commit è di tipo fixBug e il DIFF modify setto la buggyness e aumento il numero di commit FixBug
-			if (fixCommitList.contains(commit) && gitDiff.isModify()) {
-				setBuggynessWithAV(commit,pathClass);
-				projectClass.getMetrics().increaseNumberBugFixed();
-			}
-			
 			// Mi calcolo la LOC_TOUCHED solo per le modifiche su una classe
 			if (gitDiff.isModify()) {
 				EditList editList = diffFormatter.toFileHeader(d).toEditList();
 				projectClass.getMetrics().calculateLocTouched(editList);
+			}
+			
+			// Se il commit è di tipo fixBug setto la buggyness e aumento il numero di commit FixBug
+			if (commit.isFixCommit()) {
+				setBuggynessWithAV(commit,pathClass);
+				projectClass.getMetrics().increaseNumberBugFixed();
 			}
 			
 			// Set del chgSetSize && numberRevisions a prescindere dal tipo di Diff
@@ -335,7 +345,6 @@ public class GitRepo {
 			if (projClass!=null) {
 				projClass.setBuggy(true);				
 			}
-			
 		}
 	}
 	
@@ -377,6 +386,7 @@ public class GitRepo {
 	}
 	
 	
+	
 	/**
 	 * Ritorna tutte le release successive ad una release passata in input
 	 */
@@ -399,6 +409,15 @@ public class GitRepo {
 		for (GitCommit c : this.commitList) {			
 			calcMetricsFromDiff(c);
 		}
+	}
+	
+	public GitCommit getCommitFromId(String string) {
+		for (GitCommit c : this.commitList) {
+			if (c.getId().toString().equals(string)) {
+				return c;
+			}
+		}
+		return null;
 	}
 	
 	

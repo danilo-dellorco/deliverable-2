@@ -13,23 +13,33 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 
 import data.Metrics;
 import data.ProjectClass;
+import utils.DateHandler;
 import utils.Parameters;
 import utils.PathHandler;
 
 public class GitRelease {
 		private Git git;
-		private int id;	//id incrementale della release
-		private GitCommit commit; // Riferimento al commit della release
+		private int id;				// id incrementale della release
+		private GitCommit commit; 	// Riferimento al commit della release
 		private String name;
 		private Date date;
-		private List<ProjectClass> classList; 
+		private List<ProjectClass> classList;
+		private boolean inconsistent;
 		
 		public GitRelease(Git git, GitCommit commit, String name, Date date) {
 			this.git = git;
 			this.commit = commit;
 			this.name = name;
 			this.date = date;
-			this.fetchClassList();
+//			this.fetchClassList();
+		}
+
+		public boolean isInconsistent() {
+			return inconsistent;
+		}
+
+		public void setInconsistent(boolean inconsistent) {
+			this.inconsistent = inconsistent;
 		}
 
 		/**
@@ -63,6 +73,8 @@ public class GitRelease {
 			try {
 				RevCommit revCommit = revWalk.parseCommit(commitId);
 				ObjectId treeId = revCommit.getTree();
+				Date commitDate = DateHandler.getDateFromEpoch(revCommit.getCommitTime() * 1000L);
+				GitCommit classCommit = new GitCommit(revCommit.getId(), commitDate, revCommit.getFullMessage());
 		
 				treeWalk.reset(treeId);
 				treeWalk.setRecursive(true);
@@ -72,6 +84,7 @@ public class GitRelease {
 				    if (classPath.contains(Parameters.FILTER_FILE_TYPE)) {
 				    	String className = PathHandler.getNameFromPath(classPath);
 				    	ProjectClass projectClass = new ProjectClass(classPath,className,this);	    
+				    	projectClass.setCommit(classCommit);
 
 				    	objectId = treeWalk.getObjectId(0);
 				    	
@@ -99,6 +112,7 @@ public class GitRelease {
 			String output = String.format("ID: %s%nName: %s%ndate: %s%nCommit: %s", this.id, this.name,this.date, this.commit.getId());
 			
 			System.out.println(output);
+//			System.out.println("Classi: " + this.classList.size());
 			System.out.println("=".repeat(200));
 		}
 		
@@ -121,6 +135,7 @@ public class GitRelease {
 		/*===============================================================================================
 		 * Getters & Setters
 		 */
+		
 		public void setClassList(List<ProjectClass> classList) {
 			this.classList = classList;
 		}
