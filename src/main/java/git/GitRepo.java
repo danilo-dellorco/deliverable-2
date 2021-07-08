@@ -120,10 +120,19 @@ public class GitRepo {
 			if (releaseName.contains("docker")) {
 				continue;
 			}
-			RevCommit commit = walk.parseCommit(tag.getObjectId());
-			Date releaseDate = DateHandler.getDateFromEpoch(commit.getCommitTime() * 1000L);
+			RevCommit c = walk.parseCommit(tag.getObjectId());
+			Date releaseDate = DateHandler.getDateFromEpoch(c.getCommitTime() * 1000L);
+			
+			ObjectId parentID = null;
+			if (c.getParentCount() != 0) {
+				parentID = c.getParent(0);
+			}
 
-			GitCommit gitCommit = new GitCommit(commit.getId(), releaseDate, commit.getFullMessage());
+
+			GitCommit gitCommit = new GitCommit(c.getId(), releaseDate, c.getFullMessage());
+			gitCommit.setParentID(parentID); 
+			gitCommit.setAuthor(c.getAuthorIdent());
+			
 			GitRelease release = new GitRelease(this.git, gitCommit, releaseName, releaseDate);
 			fetchedReleases.add(release);
 
@@ -236,6 +245,7 @@ public class GitRepo {
 					gR.fetchClassList();
 					commonReleases.add(gR);
 					jR.setReleaseDate(DateHandler.convertToLocalDate(gR.getDate()));
+					this.commitList.add(gR.getCommit());
 					break;
 				}
 			}
@@ -296,6 +306,7 @@ public class GitRepo {
 			
 			ProjectClass projectClass = releaseClass.getProjectClass(pathClass);
 			
+			// Gestione del Rename
 			if (gitDiff.isRename() && commit.isFixCommit()) {
 				String oldPath = d.getOldPath();
 				setBuggynessWithAV(commit, oldPath);

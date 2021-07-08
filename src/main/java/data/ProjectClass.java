@@ -23,7 +23,6 @@ public class ProjectClass {
 	private String path;
 	private String name;
 	private GitRelease release;
-	private GitCommit commit;
 	private Date dateAdded;
 	private Metrics metrics;
 	
@@ -79,15 +78,6 @@ public class ProjectClass {
 	public void setBuggy(boolean buggyness) {
 		this.buggyness = buggyness;
 	}
-	
-	public GitCommit getCommit() {
-		return commit;
-	}
-
-	public void setCommit(GitCommit commit) {
-		this.commit = commit;
-	}
-
 	public void print() {
 		System.out.println("Class Name: "+this.path);
 		System.out.println("Class Rele: "+this.release.getName());
