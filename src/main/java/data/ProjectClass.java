@@ -26,6 +26,8 @@ public class ProjectClass {
 	private Date dateAdded;
 	private Metrics metrics;
 	
+	private boolean analyzed;
+	
 	public void rename(String newPath) {
 		this.setPath(newPath);
 		this.setName(PathHandler.getNameFromPath(newPath));
@@ -78,6 +80,16 @@ public class ProjectClass {
 	public void setBuggy(boolean buggyness) {
 		this.buggyness = buggyness;
 	}
+	
+	
+	public boolean isAnalyzed() {
+		return analyzed;
+	}
+
+	public void setAnalyzed(boolean analyzed) {
+		this.analyzed = analyzed;
+	}
+
 	public void print() {
 		System.out.println("Class Name: "+this.path);
 		System.out.println("Class Rele: "+this.release.getName());

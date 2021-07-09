@@ -10,7 +10,6 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import data.ProjectClass;
 import data.Proportion;
 import git.GitCommit;
-import git.GitRelease;
 import git.GitRepo;
 import jira.JiraProject;
 import jira.JiraTicket;
@@ -20,6 +19,7 @@ import utils.Parameters;
 import utils.PathHandler;
 
 public class CreateDataset {
+	Logger logger = Logger.getLogger(CreateDataset.class.getName());
 //TODO vedere buggyness syncope
 	//TODO portare classi avanti come fabiano ma è complicato
 	// TODO tutte altre strade non percorribili
@@ -28,7 +28,7 @@ public class CreateDataset {
 	
 	
 	public void create(String projName) throws GitAPIException, IOException{
-		Logger logger = Logger.getLogger(CreateDataset.class.getName());
+		
 		String gitFolderPath = PathHandler.getGitPath() + projName.toLowerCase();
 		GitRepo repository = new GitRepo(projName.toLowerCase(), gitFolderPath);
 		JiraProject jiraClient = new JiraProject(projName);
@@ -47,24 +47,48 @@ public class CreateDataset {
 		List<GitCommit> fixBugCommits = repository.filterCommits(ticketList);
 		repository.setFixCommitList(fixBugCommits);
 		
-		// Imposto tutte le metriche delle classi
+		// Calcolo ed imposto tutte le metriche delle classi
 		repository.setMetrics();																	
-
-		// Ottengo tutta la lista delle classi e calcolo per ognuna anche l'Age
-		List<ProjectClass> projectClassList = repository.getAllProjectClasses();
-		Debug.countBuggyClass(projectClassList);
 		
 		// Genero il dataset
-		logger.log(Level.INFO,"Writing data on CSV...");
-		CSVHandler.writeClassOnCSV(projectClassList, projName, Parameters.DATASET_CSV);
-		CSVHandler.writeCSVForWeka(projectClassList, projName, Parameters.WEKA_CSV);
+		generateDataset(projName, repository);
+	}
+	
+	
+	/**
+	 * Ottiene la lista di tutte le classi e genera il dataset
+	 * scrivendo su un file CSV
+	 */
+	public void generateDataset(String projName, GitRepo repo) {
+		switch (projName) {
+		case (Parameters.BOOKKEEPER):
+			List<ProjectClass> projectClassList = repo.getAllProjectClasses();
+			Debug.countBuggyClass(projectClassList);
+			// Genero il dataset
+			logger.log(Level.INFO,"Writing data on CSV...");
+			CSVHandler.writeClassOnCSV(projectClassList, projName, Parameters.DATASET_CSV);
+			CSVHandler.writeCSVForWeka(projectClassList, projName, Parameters.WEKA_CSV);
+			break;
+			
+		case (Parameters.SYNCOPE):
+			// Genero il dataset senza snoring
+			List<ProjectClass> noSnoringClassList = repo.getNoSnoringClasses();
+			Debug.countBuggyClass(noSnoringClassList);
 		
+			// Genero il dataset senza snoring classes
+			logger.log(Level.INFO,"Writing no-snoring data on CSV...");
+			CSVHandler.writeClassOnCSV(noSnoringClassList, projName, Parameters.DATASET_CSV);
+			CSVHandler.writeCSVForWeka(noSnoringClassList, projName, Parameters.WEKA_CSV);
+			break;
+			
+		default:
+		}
 		logger.log(Level.INFO,"CSV write completed succesfullt.\nDataset Created.");
 	}
 	
 	public static void main(String[] args) throws GitAPIException, IOException {
-		CreateDataset builder = new CreateDataset();
-		builder.create(Parameters.BOOKKEEPER);
-		builder.create(Parameters.SYNCOPE);
+		CreateDataset datasetCreator = new CreateDataset();
+		datasetCreator.create(Parameters.BOOKKEEPER);
+//		datasetCreator.create(Parameters.SYNCOPE);
 	}
 }

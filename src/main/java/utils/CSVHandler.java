@@ -197,14 +197,22 @@ public class CSVHandler {
 	 * Converte un file CSV in un file ARFF da fornire a Weka.
 	 */
 	public static void convertCSVtoARFF(String fileName) {
+		Logger logger = Logger.getLogger(CSVHandler.class.getName());
+		File file = new File(fileName.replace(Parameters.WEKA_CSV, Parameters.DATASET_ARFF));
+		if(file.exists()) {
+			logger.log(Level.INFO, "ARFF File already exists. Opening...");
+			return;
+		}
 		try {
+			logger.log(Level.INFO, "No ARFF File Found. Converting CSV Dataset...");
 			// load CSV
 			Instances data = loadFileCSV(fileName);
 			// save ARFF
 			ArffSaver saver = new ArffSaver();
 			saver.setInstances(data);
-			saver.setFile(new File(fileName.replace(Parameters.WEKA_CSV, Parameters.DATASET_ARFF)));
+			saver.setFile(file);
 			saver.writeBatch();
+			logger.log(Level.INFO, "ARFF written succesfully.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

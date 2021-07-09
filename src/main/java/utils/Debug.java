@@ -103,6 +103,10 @@ public class Debug {
 		return returnList;
 	}
 	
+	public static void printPercentage(double actual, double total) {
+		double percentage = (actual/total*100.00);
+		System.out.println(String.format("Commit Analysis: %.2f%%",percentage));
+	}
 	
     int extractInt(String s) {
         String num = s.replaceAll("\\D", "");

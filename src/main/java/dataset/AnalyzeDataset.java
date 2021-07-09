@@ -36,14 +36,15 @@ public class AnalyzeDataset {
 		List<WekaMetrics> resultList = weka.runWalkForward();
 		
 		//scrittura dei risultati su un file CSV		
-		logger.log(Level.INFO,"Writing CSV...");
+		logger.log(Level.INFO,"Writing analysis report on CSV...");
 		CSVHandler.writeResultOnCSV(resultList, projectName, Parameters.RESULT_CSV);
 		
-		logger.log(Level.INFO,"CSV written successfully.\nEnd of the program.");
+		logger.log(Level.INFO,"Dataset analysis completed.\nEnd of the program.");
 	}
 	
 	public static void main(String[] args) {
 		AnalyzeDataset analyzer = new AnalyzeDataset();
-		analyzer.analyze(Parameters.BOOKKEEPER);
+//		analyzer.analyze(Parameters.BOOKKEEPER);
+		analyzer.analyze(Parameters.SYNCOPE);
 	}
 }

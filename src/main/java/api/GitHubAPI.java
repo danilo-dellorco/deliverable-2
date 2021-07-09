@@ -37,7 +37,7 @@ public class GitHubAPI {
 			logger.log(Level.INFO, "Local Git Repository Found. Opening.");
 			git = Git.open(new File(local));
 			git.checkout().setName(getDefaultBranchName(git)).call();
-			git.pull().call();
+//			git.pull().call();
 		}
 		logger.log(Level.INFO, "Repository opened Succesfully");
 		return git;

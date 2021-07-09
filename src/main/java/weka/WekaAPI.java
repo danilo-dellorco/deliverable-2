@@ -1,10 +1,15 @@
 package weka;
 
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import utils.CSVHandler;
+import utils.Parameters;
 import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.GreedyStepwise;
 import weka.classifiers.AbstractClassifier;
@@ -31,7 +36,7 @@ public class WekaAPI {
 	
 	public WekaAPI(String projectName) {
 		this.classifiers = new ArrayList<>(Arrays.asList("Random Forest", "Naive Bayes", "IBk"));
-		this.resamplingMethods = new ArrayList<>(Arrays.asList("no resample", "Oversampling", "Undersampling", "Smote"));
+		this.resamplingMethods = new ArrayList<>(Arrays.asList("no resample", "Oversampling", "Undersampling", "smote")); //TODO aggiungere smote
 		this.featureSelectionMethods = new ArrayList<>(Arrays.asList("no feature selection", "Best First"));
 		this.setName(projectName);
 		
@@ -42,6 +47,7 @@ public class WekaAPI {
 	 * Esegue tutte le iterazioni necessarie di Walk Forward in base al numero di release presenti nel dataset
 	 */
 	public List<WekaMetrics> runWalkForward() {
+		Logger logger = Logger.getLogger(WekaAPI.class.getName());
 		int releasesNumber = getReleasesNumber(getDataset());
 		List<WekaMetrics> resultList = new ArrayList<>();
 		
@@ -49,7 +55,10 @@ public class WekaAPI {
 		//viene salvato il risultato
 		for(String classifierName : this.classifiers) {
 			for(String featureSelectionName : this.featureSelectionMethods) {
-				for(String resamplingMethodName : this.resamplingMethods) {	
+				for(String resamplingMethodName : this.resamplingMethods) {
+					String configuration = String.format("Running Walk Forward. Configuration: \n"
+							+ "Classifier: %s\nFeature Selection: %s\nClassifier: %s", classifierName,featureSelectionName,resamplingMethodName);
+					logger.log(Level.INFO, configuration);
 					//con walk-forward partiamo dalla seconda release come test set perche non abbiamo un training set per la prima
 					//terminiamo con l'ultima release come test set che avra tutte le precedenti come training set
 					WekaMetrics mean = new WekaMetrics(classifierName, featureSelectionName, resamplingMethodName);
@@ -156,7 +165,7 @@ public class WekaAPI {
 					trainingSet = Filter.useFilter(trainingSet, resamplingMethod);
 					break;
 					
-				case "Oversampling":
+				case ("Oversampling"):
 					resamplingMethod = new Resample();
 					resamplingMethod.setInputFormat(trainingSet);
 					
@@ -180,7 +189,7 @@ public class WekaAPI {
 					trainingSet = Filter.useFilter(trainingSet, resamplingMethod);
 					break;
 					
-				case "Smote":
+				case ("Smote"):
 					resamplingMethod = new SMOTE();
 					double parameter = 0;
 					numInstancesTrue = getNumInstancesTrue(trainingSet);
@@ -195,14 +204,13 @@ public class WekaAPI {
 					
 					// -P = specifichiamo la percentuale delle istanze della classe minoritaria da creare per bilanciare il dataset
 					// Default = 100%  [ raddoppia le istanze minoritarie ] 
-					opts = new String[] {"-P", String.valueOf(parameter)};
+					opts = new String[] {"-P 100", String.valueOf(parameter)};
 					resamplingMethod.setOptions(opts);
 					resamplingMethod.setInputFormat(trainingSet);
-					
-					trainingSet = Filter.useFilter(trainingSet, resamplingMethod);	
+					trainingSet = Filter.useFilter(trainingSet, resamplingMethod);
 					break;
 				
-				case "No resampling":
+				case ("No resampling"):
 					break;
 				
 				default:

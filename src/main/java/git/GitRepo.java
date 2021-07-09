@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.jgit.api.DescribeCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -27,6 +28,7 @@ import data.ProjectClass;
 import jira.JiraRelease;
 import jira.JiraTicket;
 import utils.DateHandler;
+import utils.Debug;
 import utils.Parameters;
 
 public class GitRepo {
@@ -76,11 +78,11 @@ public class GitRepo {
 			Date date = DateHandler.getDateFromEpoch(c.getCommitTime() * 1000L);
 			ObjectId parentID = null;
 			
+			GitCommit commit = new GitCommit(c.getId(), date, c.getFullMessage());
 			if (c.getParentCount() != 0) {
 				parentID = c.getParent(0);
 			}
 
-			GitCommit commit = new GitCommit(c.getId(), date, c.getFullMessage());
 			commit.setParentID(parentID); 
 			commit.setAuthor(c.getAuthorIdent());
 			this.commitList.add(commit);
@@ -281,8 +283,9 @@ public class GitRepo {
 	 * Imposta tutte le metriche tramite i diff di ogni commit. In particolare
 	 * esamina tutte le DiffEntry del commit in input ed in base al tipo di commit (Revision/FixBug)
 	 * e al tipo di Diff (ADD/MODIFY/RENAME) calcola le metriche opportune
+	 * @throws GitAPIException 
 	 */
-	public void calcMetricsFromDiff(GitCommit commit) throws IOException {
+	public void calcMetricsFromDiff(GitCommit commit, GitCommit previous) throws IOException, GitAPIException {
 		GitDiff gitDiff;
 		GitRelease releaseClass;
 		String pathClass;
@@ -290,32 +293,41 @@ public class GitRepo {
 		DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE);
 			diffFormatter.setRepository(git.getRepository());
 			diffFormatter.setDiffComparator(RawTextComparator.DEFAULT);
-			diffFormatter.setDetectRenames(true);
-		
-		List<DiffEntry> diffEntries = diffFormatter.scan(commit.getParentID(), commit.getId());
+		ObjectId origin = commit.getParentID();
+		if (previous != null) {
+			origin = previous.getId();
+		}
+		List<DiffEntry> diffEntries = diffFormatter.scan(origin, commit.getId());
 		List<DiffEntry> javaDiffs = GitDiff.filterJavaDiff(diffEntries);
 		diffFormatter.flush();
 		diffFormatter.close();
 		int chgSetSize = diffEntries.size();
-//		System.out.println(chgSetSize);
 		
 		for (DiffEntry d : javaDiffs) {
 			gitDiff = new GitDiff(d);						
 			releaseClass = commit.getRelease();
 			pathClass = gitDiff.getPath();
+
 			
 			ProjectClass projectClass = releaseClass.getProjectClass(pathClass);
-			
-			// Gestione del Rename
-			if (gitDiff.isRename() && commit.isFixCommit()) {
-				String oldPath = d.getOldPath();
-				setBuggynessWithAV(commit, oldPath);
-			}
 			
 			// Se la classe è stata cancellata, non esiste al momento della release quindi non và considerata
 			if (projectClass == null) {
 				continue;
-			}		
+			}
+			projectClass.setAnalyzed(true);
+			
+			// Gestione del Rename
+			if (gitDiff.isRename()) {
+				System.out.println("eh");
+				String oldPath = d.getOldPath();
+				ProjectClass oldProjectClass = commit.getRelease().getProjectClass(oldPath);
+				projectClass.setMetrics(oldProjectClass.getMetrics());
+				
+				if (commit.isFixCommit()) {
+					setBuggynessWithAV(commit, oldPath);
+				}
+			}
 			
 			// Prendo la data di aggiunta della classe e la imposto anche per quella classe nelle future release
 			if (gitDiff.isAdd()) {
@@ -354,7 +366,8 @@ public class GitRepo {
 			GitRelease gitAv = getReleaseByName(av.getName());
 			ProjectClass projClass = gitAv.getProjectClass(pathClass);
 			if (projClass!=null) {
-				projClass.setBuggy(true);				
+				projClass.setBuggy(true);
+				projClass.setAnalyzed(true);
 			}
 		}
 	}
@@ -396,7 +409,73 @@ public class GitRepo {
 		return list;
 	}
 	
+	public List<ProjectClass> getNoSnoringClasses() {
+		List<ProjectClass> classes = new ArrayList<>();
+		List<GitRelease> releases = new ArrayList<>();
+		for (GitRelease r:this.releaseList) {
+			List<ProjectClass> releaseClassList = r.getClassList();
+			if (!validClassList(releaseClassList)) {
+				r.print();
+				continue;
+			}
+			releases.add(r);
+			
+			for (ProjectClass p:releaseClassList) {
+				Date additionDate = p.getDateAdded();
+				Date releaseDate = p.getRelease().getDate();
+				int age = DateHandler.getWeeksBetweenDates(additionDate, releaseDate);
+				p.getMetrics().setAge(age);
+				classes.add(p);
+			}
+		}
+		normalizeReleaseID(classes);
+		return getHalfClasses(classes,releases);
+	}
 	
+	public boolean validClassList(List<ProjectClass> list) {
+		boolean firstValue = list.get(0).isBuggy();
+		for (ProjectClass p:list) {
+			boolean actualValue = p.isBuggy();
+			if (actualValue!=firstValue) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
+
+
+	public List<ProjectClass> getHalfClasses(List<ProjectClass> snoringList, List<GitRelease> releases) {
+		int total = releases.size();
+		int discarded = this.releaseList.size() - releases.size() +1 ;
+		GitRelease endSnoring = releases.get(total/2+discarded/2); 
+		List<ProjectClass> list = new ArrayList<>();
+		for (GitRelease r:releases) {
+			if (r.equals(endSnoring)) {
+				return list;
+			}
+			for (ProjectClass p:r.getClassList()) {
+				Date additionDate = p.getDateAdded();
+				Date releaseDate = p.getRelease().getDate();
+				int age = DateHandler.getWeeksBetweenDates(additionDate, releaseDate);
+				p.getMetrics().setAge(age);
+				list.add(p);
+			}
+		}
+		return list;
+	}
+	
+	public void normalizeReleaseID(List<ProjectClass> list) { 
+		int actualID = 1;
+		int classID = 0;
+		for (ProjectClass p : list) {
+			classID = p.getRelease().getId();
+			if (classID != actualID) {
+				actualID++;
+				p.getRelease().setId(actualID);
+			}
+		}
+	}
 	
 	/**
 	 * Ritorna tutte le release successive ad una release passata in input
@@ -415,10 +494,18 @@ public class GitRepo {
 	/**
 	 * Calcola ed imposta tutte le metriche relative alle classi del progetto. Esegue il metodo
 	 * calcMetricsFromDiff() passando in input tutti i commit del progetto.
+	 * @throws GitAPIException 
 	 **/
-	public void setMetrics() throws IOException {
-		for (GitCommit c : this.commitList) {			
-			calcMetricsFromDiff(c);
+	public void setMetrics() throws IOException, GitAPIException {
+		int actual = 1;
+		int total = this.commitList.size();
+		GitCommit previous = null;
+		for (GitCommit c : this.commitList) {
+//			System.out.println(actual + "/" + total);
+			Debug.printPercentage((double) actual,(double) total);
+			calcMetricsFromDiff(c,previous);
+			previous = c;
+			actual++;
 		}
 	}
 	
@@ -431,7 +518,19 @@ public class GitRepo {
 		return null;
 	}
 	
-	
+	//syncope-1.2.1-260-gf6d48fd
+	public GitRelease getRealRelease(GitCommit commit) throws IOException, GitAPIException {
+		DescribeCommand cmd = this.git.describe();
+		cmd.setTarget(commit.getId());
+		String out = cmd.call();
+		if (out!=null) {
+			int start = out.indexOf("-")+1;
+			int end = out.indexOf("-",start+1);
+			String version = out.substring(start,end);
+			return this.getReleaseByName(version);
+		}
+		return null;
+	}
 	
 	/*===============================================================================================
 	 * Getters & Setters

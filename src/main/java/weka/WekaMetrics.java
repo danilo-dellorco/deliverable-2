@@ -76,6 +76,11 @@ public class WekaMetrics {
 		if(tp == 0 && fp == 0 && fn == 0) {
 			this.precision = 1;
 			this.recall = 1;
+		} else if (fp == 0 && tn == 0) {
+			this.auc = 0;
+			this.precision = eval.precision(positiveClassIndex);
+			this.recall = eval.recall(positiveClassIndex);
+			this.kappa = eval.kappa();
 		} else if (tp == 0 && (fp > 0 || fn > 0)) {
 			this.precision = 0;
 			this.recall = 0;
