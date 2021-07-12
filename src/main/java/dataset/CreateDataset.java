@@ -82,7 +82,7 @@ public class CreateDataset {
 	
 	public static void main(String[] args) throws GitAPIException, IOException {
 		CreateDataset datasetCreator = new CreateDataset();
-//		datasetCreator.create(Parameters.BOOKKEEPER);
+		datasetCreator.create(Parameters.BOOKKEEPER);
 		datasetCreator.create(Parameters.SYNCOPE);
 	}
 }
