@@ -148,7 +148,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/StatusModalPage.java;70;102;9.0;59;22;1069;451;178;6;0;3;0;false
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/SyncTaskModalPage.java;69;104;6.0;47;22;1093;451;156;7;0;3;0;false
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/TaskModalPage.java;159;346;21.0;196;73;1279;451;142;9;1;3;0;true
-1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;82;6.0;41;13;853;442;142;6;0;3;0;false
+1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;82;6.0;41;13;853;442;142;6;0;3;0;true
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/Todo.java;337;66;11.0;33;11;734;442;244;3;0;2;0;false
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/UserModalPage.java;121;107;6.0;62;21;1420;451;157;9;0;4;0;false
 1;1.0.0-incubating;console/src/main/java/org/apache/syncope/console/pages/UserRequestModalPage.java;88;33;5.0;17;6;817;442;272;3;0;2;0;false
@@ -697,7 +697,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/StatusModalPage.java;70;0;0.0;0;0;0;0;0;0;0;0;0;false
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/SyncTaskModalPage.java;69;0;0.0;0;0;0;0;0;0;0;0;0;false
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/TaskModalPage.java;159;0;0.0;0;0;0;0;0;0;0;0;0;true
-2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;false
+2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;true
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/Todo.java;337;0;0.0;0;0;0;0;0;0;0;0;0;false
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/UserModalPage.java;121;0;0.0;0;0;0;0;0;0;0;0;0;false
 2;1.0.1-incubating;console/src/main/java/org/apache/syncope/console/pages/UserRequestModalPage.java;88;0;0.0;0;0;0;0;0;0;0;0;0;false
@@ -1246,7 +1246,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/StatusModalPage.java;70;0;0.0;0;0;0;0;0;0;0;0;0;false
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/SyncTaskModalPage.java;69;0;0.0;0;0;0;0;0;0;0;0;0;false
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/TaskModalPage.java;159;0;0.0;0;0;0;0;0;0;0;0;0;true
-3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;false
+3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;true
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/Todo.java;337;0;0.0;0;0;0;0;0;0;0;0;0;false
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/UserModalPage.java;121;0;0.0;0;0;0;0;0;0;0;0;0;false
 3;1.0.2-incubating;console/src/main/java/org/apache/syncope/console/pages/UserRequestModalPage.java;88;0;0.0;0;0;0;0;0;0;0;0;0;false
@@ -1795,7 +1795,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/StatusModalPage.java;70;0;0.0;0;0;0;0;0;0;0;0;0;false
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/SyncTaskModalPage.java;69;0;0.0;0;0;0;0;0;0;0;0;0;false
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/TaskModalPage.java;159;0;0.0;0;0;0;0;0;0;0;0;0;true
-4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;false
+4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;0;0.0;0;0;0;0;0;0;0;0;0;true
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/Todo.java;337;0;0.0;0;0;0;0;0;0;0;0;0;false
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/UserModalPage.java;121;0;0.0;0;0;0;0;0;0;0;0;0;false
 4;1.0.3-incubating;console/src/main/java/org/apache/syncope/console/pages/UserRequestModalPage.java;88;0;0.0;0;0;0;0;0;0;0;0;0;false
@@ -2345,7 +2345,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/StatusModalPage.java;70;28;6.0;6;6;397;397;397;1;0;1;2;false
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/SyncTaskModalPage.java;69;30;20.0;20;20;397;397;397;1;0;1;2;false
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/TaskModalPage.java;159;112;33.0;33;33;397;397;397;1;0;1;2;true
-5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;22;11.0;11;11;397;397;397;1;0;1;2;false
+5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/Tasks.java;131;22;11.0;11;11;397;397;397;1;0;1;2;true
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/Todo.java;337;22;11.0;11;11;397;397;397;1;0;1;2;false
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/UserModalPage.java;121;29;6.0;6;6;397;397;397;1;0;1;2;false
 5;1.0.4;console/src/main/java/org/apache/syncope/console/pages/UserRequestModalPage.java;90;0;0.0;0;0;0;0;0;0;0;0;2;false
@@ -2862,7 +2862,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 6;1.0.5;console/src/main/java/org/apache/syncope/console/commons/XMLRolesReader.java;58;2;1.0;1;1;1756;1051;878;2;0;2;8;false
 6;1.0.5;console/src/main/java/org/apache/syncope/console/markup/html/CrontabContainer.java;119;14;2.0;7;3;2263;1051;754;3;0;3;8;false
 6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/AbstractSchedTaskModalPage.java;78;92;15.0;46;35;2263;1051;754;3;0;3;8;true
-6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/AbstractSchemaModalPage.java;21;12;3.0;6;3;1756;1051;878;2;0;2;8;false
+6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/AbstractSchemaModalPage.java;21;12;3.0;6;3;1756;1051;878;2;0;2;8;true
 6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/ApprovalModalPage.java;156;98;16.0;49;30;2287;1051;571;4;0;4;8;true
 6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/BaseModalPage.java;22;60;10.0;30;24;1582;1051;527;3;0;3;8;true
 6;1.0.5;console/src/main/java/org/apache/syncope/console/pages/BasePage.java;139;94;11.0;47;44;2283;1051;570;4;0;4;8;false
@@ -3403,7 +3403,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/PreferenceManager.java;122;10;2.0;5;3;2229;1124;743;3;0;2;13;false
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/RoleTreeBuilder.java;70;40;6.0;20;8;2193;1124;731;3;0;2;13;false
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SchemaModalPageFactory.java;34;8;2.0;4;2;2175;1124;1087;2;0;2;13;true
-7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SearchCondWrapper.java;64;16;4.0;8;5;2229;1124;743;3;0;2;13;false
+7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SearchCondWrapper.java;64;16;4.0;8;5;2229;1124;743;3;0;2;13;true
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SelectChoiceRenderer.java;17;12;3.0;6;3;1142;1124;571;2;0;2;13;false
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SelectOption.java;40;2;1.0;1;1;1105;1051;552;2;0;2;13;false
 7;1.0.6;console/src/main/java/org/apache/syncope/console/commons/SortableDataProviderComparator.java;35;10;2.0;5;3;2229;1124;743;3;0;2;13;true
@@ -3990,7 +3990,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/Logout.java;16;4;1.0;2;1;2295;1170;1147;2;0;2;17;false
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/MembershipModalPage.java;42;54;13.0;27;20;2295;1170;1147;2;0;2;17;false
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/NotificationModalPage.java;193;66;16.0;33;23;2295;1170;1147;2;0;2;17;true
-8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/NotificationTaskModalPage.java;41;22;3.0;11;6;2302;1170;767;3;0;2;17;false
+8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/NotificationTaskModalPage.java;41;22;3.0;11;6;2302;1170;767;3;0;2;17;true
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/PolicyModalPage.java;150;84;21.0;42;30;2295;1170;1147;2;0;2;17;false
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/PropagationTaskModalPage.java;18;18;3.0;9;5;2302;1170;767;3;0;2;17;false
 8;1.0.7;console/src/main/java/org/apache/syncope/console/pages/ReportExecResultDownloadModalPage.java;38;22;5.0;11;7;2295;1170;1147;2;0;2;17;false
@@ -5153,7 +5153,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 9;1.1.0;core/src/test/java/org/apache/syncope/core/sync/TestSyncRule.java;14;0;0.0;0;0;3508;1176;1169;3;0;1;0;false
 10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/ApacheDSRootDseServlet.java;62;0;0.0;0;0;0;0;0;0;0;0;1;false
 10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/ApacheDSStartStopListener.java;143;82;46.0;46;46;1227;1227;1227;1;0;1;1;true
-10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/H2StartStopListener.java;65;17;9.0;9;9;1227;1227;1227;1;0;1;1;false
+10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/H2StartStopListener.java;65;17;9.0;9;9;1227;1227;1227;1;0;1;1;true
 10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/JarSchemaLdifExtractor.java;94;0;0.0;0;0;0;0;0;0;0;0;1;false
 10;1.0.8;build-tools/src/main/java/org/apache/syncope/buildtools/ServiceTimeoutServlet.java;37;12;4.0;4;4;1227;1227;1227;1;0;1;1;false
 10;1.0.8;client/src/main/java/org/apache/syncope/annotation/FormAttributeField.java;11;0;0.0;0;0;1227;1227;1227;1;0;1;0;false
@@ -9445,7 +9445,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 16;1.1.6;build-tools/src/main/java/org/apache/syncope/buildtools/ServiceTimeoutServlet.java;38;0;0.0;0;0;0;0;0;0;0;0;46;false
 16;1.1.6;client/src/main/java/org/apache/syncope/client/http/HttpClientParams.java;11;0;0.0;0;0;58006;929;853;68;8;3;0;false
 16;1.1.6;client/src/main/java/org/apache/syncope/client/http/PreemptiveAuthHttpRequestFactory.java;38;0;0.0;0;0;58006;929;853;68;8;3;0;true
-16;1.1.6;client/src/main/java/org/apache/syncope/client/rest/utils/RestClientExceptionMapper.java;92;0;0.0;0;0;58006;929;853;68;8;3;0;false
+16;1.1.6;client/src/main/java/org/apache/syncope/client/rest/utils/RestClientExceptionMapper.java;92;0;0.0;0;0;58006;929;853;68;8;3;0;true
 16;1.1.6;client/src/main/java/org/apache/syncope/client/services/proxy/ConfigurationServiceProxy.java;68;0;0.0;0;0;58006;929;853;68;8;3;0;false
 16;1.1.6;client/src/main/java/org/apache/syncope/client/services/proxy/ConnectorServiceProxy.java;105;0;0.0;0;0;58006;929;853;68;8;3;0;false
 16;1.1.6;client/src/main/java/org/apache/syncope/client/services/proxy/EntitlementServiceProxy.java;25;0;0.0;0;0;58006;929;853;68;8;3;0;false
@@ -10208,7 +10208,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 17;1.0.9;client/src/main/java/org/apache/syncope/client/SyncopeConstants.java;11;0;0.0;0;0;1311;1311;1311;1;0;1;0;false
 17;1.0.9;client/src/main/java/org/apache/syncope/client/http/HttpClientParams.java;11;0;0.0;0;0;23769;917;914;26;0;4;0;false
 17;1.0.9;client/src/main/java/org/apache/syncope/client/http/PreemptiveAuthHttpRequestFactory.java;38;10;5.0;5;5;25083;1311;895;28;1;4;0;true
-17;1.0.9;client/src/main/java/org/apache/syncope/client/mod/AbstractAttributableMod.java;135;0;0.0;0;0;1311;1311;1311;1;0;1;0;false
+17;1.0.9;client/src/main/java/org/apache/syncope/client/mod/AbstractAttributableMod.java;135;0;0.0;0;0;1311;1311;1311;1;0;1;0;true
 17;1.0.9;client/src/main/java/org/apache/syncope/client/mod/AttributeMod.java;50;0;0.0;0;0;1311;1311;1311;1;0;1;0;false
 17;1.0.9;client/src/main/java/org/apache/syncope/client/mod/MembershipMod.java;49;0;0.0;0;0;1311;1311;1311;1;0;1;0;false
 17;1.0.9;client/src/main/java/org/apache/syncope/client/mod/ReferenceMod.java;14;0;0.0;0;0;1311;1311;1311;1;0;1;0;false
@@ -14057,7 +14057,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 22;1.2.1;build-tools/src/main/java/org/apache/syncope/buildtools/LdifURLLoader.java;73;60;1.0;30;1;38952;1309;1298;30;2;2;31;false
 22;1.2.1;build-tools/src/main/java/org/apache/syncope/buildtools/ServiceTimeoutServlet.java;38;0;0.0;0;0;0;0;0;0;0;0;84;false
 22;1.2.1;client/src/main/java/org/apache/syncope/client/SyncopeClient.java;97;0;0.0;0;0;38952;1309;1298;30;2;2;0;true
-22;1.2.1;client/src/main/java/org/apache/syncope/client/SyncopeClientFactoryBean.java;140;0;0.0;0;0;38952;1309;1298;30;2;2;0;false
+22;1.2.1;client/src/main/java/org/apache/syncope/client/SyncopeClientFactoryBean.java;140;0;0.0;0;0;38952;1309;1298;30;2;2;0;true
 22;1.2.1;client/src/main/java/org/apache/syncope/client/rest/RestClientExceptionMapper.java;92;0;0.0;0;0;38952;1309;1298;30;2;2;0;false
 22;1.2.1;client/src/main/java/org/apache/syncope/client/rest/RestClientFactoryBean.java;23;0;0.0;0;0;38952;1309;1298;30;2;2;0;false
 22;1.2.1;common/src/main/java/org/apache/syncope/common/AbstractBaseBean.java;29;2970;49.0;1485;54;38952;1309;1298;30;2;2;31;false
@@ -18847,7 +18847,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeClassModalPanel.java;55;0;0.0;0;0;12133;4056;4044;3;1;2;3;false
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeClassesPanel.java;125;0;0.0;0;0;24191;4056;3455;7;1;2;3;false
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeDetailsPanel.java;57;2;1.0;1;1;8155;4056;2038;4;1;2;3;true
-27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeMenuItem.java;18;0;0.0;0;0;59581;4056;3972;15;2;2;3;false
+27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeMenuItem.java;18;0;0.0;0;0;59581;4056;3972;15;2;2;3;true
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypeModalPanel.java;38;2;1.0;1;1;8155;4056;2038;4;1;2;3;false
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/AnyTypePanel.java;161;315;125.0;251;246;12178;4056;2435;5;1;2;3;false
 27;2.0.0-M1;client/console/src/main/java/org/apache/syncope/client/console/panels/ConnectorCapabilitiesPanel.java;28;0;0.0;0;0;59581;4056;3972;15;2;2;3;false
@@ -20488,7 +20488,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/AjaxWizardMgtButtonBar.java;83;9;4.0;4;4;64;57;32;2;1;1;5;false
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/WizardMgtPanel.java;207;120;8.0;66;41;4029;3613;447;9;0;4;9;false
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AbstractAttrs.java;60;4;2.0;2;2;3645;3613;1822;2;0;1;9;true
-28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AnnotatedBeanPanel.java;22;0;0.0;0;0;3613;3613;3613;1;0;1;9;false
+28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AnnotatedBeanPanel.java;22;0;0.0;0;0;3613;3613;3613;1;0;1;9;true
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AnyHandler.java;13;0;0.0;0;0;3613;3613;3613;1;0;1;9;false
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AnyObjectWizardBuilder.java;35;31;5.0;17;14;3795;3613;948;4;0;1;9;false
 28;2.0.0-M2;client/console/src/main/java/org/apache/syncope/client/console/wizards/any/AnyWizardBuilder.java;62;48;4.0;23;14;3886;3613;647;6;0;3;9;false
@@ -21845,7 +21845,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/layout/UserForm.java;4;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/layout/UserFormLayoutInfo.java;38;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/MailTemplateDirectoryPanel.java;171;0;0.0;0;0;4237;4237;4237;1;0;1;0;true
-29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/NotificationDirectoryPanel.java;159;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
+29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/NotificationDirectoryPanel.java;159;0;0.0;0;0;4237;4237;4237;1;0;1;0;true
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/NotificationTasks.java;47;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/NotificationWizardBuilder.java;317;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
 29;2.0.0-M3;client/console/src/main/java/org/apache/syncope/client/console/notifications/NotificationWrapper.java;92;0;0.0;0;0;4237;4237;4237;1;0;1;0;false
@@ -23475,7 +23475,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 30;2.0.0-M4;client/cli/src/test/java/org/apache/syncope/client/cli/util/JasyptUtilsTest.java;13;0;0.0;0;0;0;0;0;0;0;0;3;false
 30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/BookmarkablePageLinkBuilder.java;18;0;0.0;0;0;0;0;0;0;0;0;3;false
 30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/PreferenceManager.java;118;0;0.0;0;0;0;0;0;0;0;0;3;true
-30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/SyncopeConsoleApplication.java;217;8;0.0;0;0;26;26;26;1;0;1;3;false
+30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/SyncopeConsoleApplication.java;217;8;0.0;0;0;26;26;26;1;0;1;3;true
 30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/SyncopeConsoleRequestCycleListener.java;47;0;0.0;0;0;0;0;0;0;0;0;3;false
 30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/SyncopeConsoleSession.java;190;21;9.0;9;9;67;65;33;2;0;2;3;false
 30;2.0.0-M4;client/console/src/main/java/org/apache/syncope/client/console/annotations/BinaryPreview.java;12;0;0.0;0;0;0;0;0;0;0;0;3;false
@@ -25114,7 +25114,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/report/ReportListJobs.java;32;0;0.0;0;0;0;0;0;0;0;0;12;false
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/report/ReportRead.java;40;2;1.0;1;1;80;80;80;1;0;1;12;false
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/report/ReportResultManager.java;65;4;2.0;2;2;80;80;80;1;0;1;12;true
-31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/report/ReportSyncopeOperations.java;77;0;0.0;0;0;0;0;0;0;0;0;12;false
+31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/report/ReportSyncopeOperations.java;77;0;0.0;0;0;0;0;0;0;0;0;12;true
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/resource/AbstractResourceCommand.java;5;0;0.0;0;0;0;0;0;0;0;0;12;false
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/resource/ResourceCommand.java;73;0;0.0;0;0;0;0;0;0;0;0;12;false
 31;2.0.0.M5;client/cli/src/main/java/org/apache/syncope/client/cli/commands/resource/ResourceDelete.java;37;2;1.0;1;1;80;80;80;1;0;1;12;false
@@ -27248,7 +27248,7 @@ VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;Chg
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/wicket/markup/html/form/preview/BinaryPDFPreviewer.java;101;0;0.0;0;0;4427;4427;4427;1;0;1;1;false
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/wicket/markup/html/form/preview/DefaultPreviewer.java;14;0;0.0;0;0;4427;4427;4427;1;0;1;1;false
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/wicket/markup/html/link/VeilPopupSettings.java;9;0;0.0;0;0;4427;4427;4427;1;0;1;1;true
-32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/wicket/markup/html/list/ConnConfPropertyListView.java;150;0;0.0;0;0;4427;4427;4427;1;0;1;1;false
+32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/wicket/markup/html/list/ConnConfPropertyListView.java;150;0;0.0;0;0;4427;4427;4427;1;0;1;1;true
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/widgets/AlertWidget.java;90;0;0.0;0;0;4427;4427;4427;1;0;1;1;false
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/widgets/AnyByRealmWidget.java;139;0;0.0;0;0;4427;4427;4427;1;0;1;1;false
 32;2.0.1;client/console/src/main/java/org/apache/syncope/client/console/widgets/ApprovalsWidget.java;181;2;1.0;1;1;4513;4427;2256;2;0;1;1;false

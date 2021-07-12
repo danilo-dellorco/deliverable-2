@@ -11,13 +11,15 @@ import git.GitCommit;
 import git.GitRelease;
 import git.GitRepo;
 import jira.JiraRelease;
-import jira.JiraTicket;
 
 public class Debug {
 	static Logger logger = Logger.getLogger("log");
 	
 	private Debug() {}
 	
+	/**
+	 * Permette di interrompere l'esecuzione, in modo da poter verificare un qualsiasi output
+	 */
 	public static void waitInput(){
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -59,6 +61,9 @@ public class Debug {
 		}
 	}
 	
+	/**
+	 * Stampa a schermo il progresso corrente riguardo l'analisi di tutti i commit considerati
+	 */
 	public static void printPercentage(double actual, double total) {
 		double percentage = (actual/total*100.00);
 		String perc = String.format("Commit Analysis: %.2f%%",percentage);
@@ -78,6 +83,9 @@ public class Debug {
 		}
 	}
 	
+	/**
+	 * Stampa a schermo un report con il numero di classi trovate ed il numero di classi buggy
+	 */
 	public static void countBuggyClass(List<ProjectClass> list) {
 		int bugCount = 0;
 		int classCount = 0;
@@ -91,18 +99,15 @@ public class Debug {
 		logger.log(Level.INFO,"Total Class: {0}", classCount);
 	}
 	
-	public static void printAllJiraTickets(List<JiraTicket> tickets) {
-		for (JiraTicket t:tickets) {
-			t.print();
-		}
-	}
-	
+	/**
+	 * Stampa i parametri relativi alla corrente iterazione di Walk Forward
+	 */
 	public static void printWekaRunConfiguration(String classifierName,String featureSelectionName,String resamplingMethodName,String costSensitiveMethod) {
 		String out = String.format("Configuration%nClassifier: %s%nFeature Selection: %s%nResampling: %s%nSensitivity: %s%n", classifierName,featureSelectionName,resamplingMethodName,costSensitiveMethod);
 		logger.log(Level.INFO,out);
 	}
 	
-	/*
+	/**
 	 * [DEBUG] Stampa a schermo un Timestamp per valutare le prestazioni
 	 */
 	public static String timestamp() {
