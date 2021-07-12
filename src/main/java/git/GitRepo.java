@@ -499,11 +499,11 @@ public class GitRepo {
 	 * calcMetricsFromDiff() passando in input tutti i commit del progetto.
 	 **/
 	public void setMetrics() throws IOException {
-		int actual = 1;
-		int total = this.commitList.size();
+		double actual = 1;
+		double total = this.commitList.size();
 		GitCommit previous = null;
 		for (GitCommit c : this.commitList) {
-			Debug.printPercentage((double) actual,(double) total);
+			Debug.printPercentage(actual,total);
 			calcMetricsFromDiff(c,previous);
 			previous = c;
 			actual++;

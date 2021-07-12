@@ -53,14 +53,14 @@ public class WekaMetrics {
 		int numBuggyTraining = 0;
 		int numFeatures = training.numAttributes();
 		for(Instance instance: training) {
-			if( ((String)instance.stringValue(numFeatures-1)).equalsIgnoreCase("true")) {
+			if( (instance.stringValue(numFeatures-1)).equalsIgnoreCase("true")) {
 				numBuggyTraining = numBuggyTraining + 1;
 			}
 		}
 		
 		int numBuggyTest = 0;
 		for(Instance instance: test) {
-			if( ((String)instance.stringValue(numFeatures-1)).equalsIgnoreCase("true")) {
+			if( (instance.stringValue(numFeatures-1)).equalsIgnoreCase("true")) {
 				numBuggyTest = numBuggyTest + 1;
 			}
 		}
