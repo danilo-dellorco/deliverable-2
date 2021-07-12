@@ -90,22 +90,6 @@ public class GitDiff {
 		}
 	}
 	
-	
-	/**
-	 * [DEBUG] Stampa tutte le informazioni su un GitDiff
-	 */
-	public void print() {
-		System.out.println("CONT: "+this.content);
-		System.out.println("TYPE: "+this.type);
-		if (isRename()) {
-			System.out.println("PAT1: "+this.renamePaths.get(0));
-			System.out.println("PAT2: "+this.renamePaths.get(1));
-		}
-		else {
-			System.out.println("PATH: "+this.path);
-		}
-	}
-	
 
 	/**
 	 * Ritorna soltanto i DiffEntry relativi ad un file Java

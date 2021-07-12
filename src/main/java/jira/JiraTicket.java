@@ -95,32 +95,6 @@ public class JiraTicket {
 		}
 	}
 	
-	
-	/**
-	 * [DEBUG] Stampa a schermo tutte le informazioni sul JiraTicket
-	 **/
-	public void print() {
-		List<JiraRelease> av = this.getAffectedVersions();
-		System.out.println("ID: " + this.getId());
-		System.out.println("Name: " + this.getName());
-		
-		System.out.print("AV: [");
-		for(int i=0; i<av.size(); i++) {
-			System.out.print(av.get(i).getName() + " ");
-		}
-		System.out.print("]\n");
-		
-		System.out.println("FV: " + this.getFv().getName());
-		System.out.println("OV: " + this.getOv().getName());
-		System.out.println("IV: " + this.getIv().getName());
-		System.out.println("Creation Date: " + this.getCreationDate());
-		System.out.println("Resolution Date: " + this.getResolutionDate());
-		System.out.println("\n");
-	}
-	
-	
-	
-	
 	/*===============================================================================================
 	 * Getters & Setters
 	 */

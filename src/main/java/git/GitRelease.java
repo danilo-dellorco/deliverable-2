@@ -3,6 +3,8 @@ package git;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.ObjectId;
@@ -17,6 +19,8 @@ import utils.Parameters;
 import utils.PathHandler;
 
 public class GitRelease {
+		static Logger logger = Logger.getLogger(GitRelease.class.getName());
+	
 		private Git git;
 		private int id;				// id incrementale della release
 		private GitCommit commit; 	// Riferimento al commit della release
@@ -97,25 +101,7 @@ public class GitRelease {
 		public void print() {
 			String output = String.format("ID: %s%nName: %s%ndate: %s%nCommit: %s", this.id, this.name,this.date, this.commit.getId());
 			
-			System.out.println(output);
-//			System.out.println("Classi: " + this.classList.size());
-			System.out.println("=".repeat(200));
-		}
-		
-		
-		/**
-		 * [DEBUG] Stampa la lista delle classi della GitRelease
-		 */
-		public void printClassList() {
-			System.out.println(this.name);
-			System.out.println("=".repeat(200)+"\n");
-			int count = 0;
-			for (ProjectClass c:this.classList) {
-				System.out.println(c.getPath() + " " + c.isBuggy());
-				count++;
-			}
-			System.out.println(count);
-			System.out.println("=".repeat(200)+"\n");
+			logger.log(Level.INFO,output);
 		}
 		
 		/*===============================================================================================

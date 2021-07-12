@@ -45,4 +45,8 @@ public class Parameters {
 	// CSV Headers
 	public static final String CSV_HEADER = "VersionID;VersionName;Path;Size;LOC_Touched;AVGLocAdded;LocAdded;MaxLocAdded;ChgSetSize;MaxChgSetSize;AVGChgSetSize;NumRevisions;NumBugFixed;NAuth;Age;Buggyness\n";
 	public static final String CSV_HEADER_WEKA = "VersionID,VersionName,Path,Size,LOC_Touched,AVGLocAdded,LocAdded,MaxLocAdded,ChgSetSize,MaxChgSetSize,AVGChgSetSize,NumRevisions,NumBugFixed,NAuth,Age,Buggyness\n";
+	
+	// Cost sensitive settings
+	public static final Integer FALSE_POSITIVE_COST = 1;
+	public static final Integer FALSE_NEGATIVE_COST = 10;
 }

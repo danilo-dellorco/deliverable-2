@@ -32,7 +32,9 @@ public class Metrics {
 	private int counterChgSet;
 	private List<String> listOfAuthors = new ArrayList<>();
 
-	public Metrics() {}
+	public Metrics() {
+		// Public Constructor
+	}
 	
 
 	/**

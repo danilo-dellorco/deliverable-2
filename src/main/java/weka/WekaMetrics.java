@@ -1,5 +1,7 @@
 package weka;
 
+import utils.Parameters;
+import weka.classifiers.CostMatrix;
 import weka.classifiers.evaluation.Evaluation;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -26,12 +28,14 @@ public class WekaMetrics {
 	private String classifierName;
 	private String featureSelectionName;
 	private String resamplingMethodName;
+	private String costSensitivityName;
 	
-	public WekaMetrics(String classifierName, String featureSelectionName, String resamplingMethodName) {
+	public WekaMetrics(String classifierName, String featureSelectionName, String resamplingMethodName, String costSensitivityName) {
 		super();
 		this.setClassifierName(classifierName);
 		this.setFeatureSelectionName(featureSelectionName);
 		this.setResamplingMethodName(resamplingMethodName);
+		this.setCostSensitivityName(costSensitivityName);
 	}
 
 	
@@ -123,6 +127,17 @@ public class WekaMetrics {
 		precision = precision/releases;
 		auc = auc/releases;
 		this.mean = true;
+	}
+	
+	public static CostMatrix getCostMatrix() {
+		
+		CostMatrix costMatrix = new CostMatrix(2);
+		costMatrix.setElement(0, 0, 0);
+		costMatrix.setElement(0, 1, Parameters.FALSE_NEGATIVE_COST);
+		costMatrix.setElement(1, 0, Parameters.FALSE_POSITIVE_COST);
+		costMatrix.setElement(1, 1, 0);
+				
+		return costMatrix;
 	}
 	
 	/*===============================================================================================
@@ -260,4 +275,14 @@ public class WekaMetrics {
 	public void setClassifierName(String classifierName) {
 		this.classifierName = classifierName;
 	}
+
+	public String getCostSensitivityName() {
+		return costSensitivityName;
+	}
+
+	public void setCostSensitivityName(String costSensitivity) {
+		this.costSensitivityName = costSensitivity;
+	}
+	
+	
 }

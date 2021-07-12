@@ -2,7 +2,9 @@ package api;
 
 import java.util.List;
 import jira.JiraRelease;
-
+/**
+ *  API per interagire con la piattaforma Jira
+ */
 public class JiraAPI {
 	
 	/**

@@ -44,7 +44,7 @@ public class AnalyzeDataset {
 	
 	public static void main(String[] args) {
 		AnalyzeDataset analyzer = new AnalyzeDataset();
-		analyzer.analyze(Parameters.BOOKKEEPER);
+//		analyzer.analyze(Parameters.BOOKKEEPER);
 		analyzer.analyze(Parameters.SYNCOPE);
 	}
 }

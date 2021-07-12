@@ -6,7 +6,9 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Fornisce metodi di supporto alla gestione delle date.
+ */
 public class DateHandler {
 	
 	private DateHandler() {}

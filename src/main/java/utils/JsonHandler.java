@@ -10,7 +10,9 @@ import java.nio.charset.StandardCharsets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**
+ *	Fornisce i vari metodi per la gestione dei JSON
+ */
 public class JsonHandler {
 	
 	private JsonHandler() {}

@@ -1,8 +1,12 @@
 package jira;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JiraRelease {
+	Logger logger = Logger.getLogger(JiraRelease.class.getName());
+	
 	private String name;
 	private LocalDate date;
 	private int id;	//ID incrementale della release
@@ -17,9 +21,7 @@ public class JiraRelease {
 	 **/
 	public void print() {
 		String output = String.format("Name: %s%ndate: %s%nID: %d",this.name,this.date,this.id);
-		
-		System.out.println(output);
-		System.out.println("====================================================");
+		logger.log(Level.INFO,output);
 	}
 	
 	

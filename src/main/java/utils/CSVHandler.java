@@ -21,6 +21,7 @@ import jira.JiraRelease;
 import jira.JiraTicket;
 
 public class CSVHandler {
+	static Logger logger = Logger.getLogger(CSVHandler.class.getName());
 
 	private CSVHandler() {
 	}
@@ -60,10 +61,7 @@ public class CSVHandler {
 				outputBuilder.append(c.getId() + ";" + c.getDate() + ";" + c.getMessage() + "\n");
 			}
 			fileWriter.append(outputBuilder.toString());
-			System.out.println(outputName + "\tSAVED");
-
 		} catch (Exception e) {
-			Logger logger = Logger.getLogger(CSVHandler.class.getName());
 			logger.log(Level.SEVERE, Parameters.CSV_ERROR, e);
 		}
 	}
@@ -159,7 +157,7 @@ public class CSVHandler {
 		try (FileWriter fileWriter = new FileWriter(Parameters.OUTPUT_PATH + projectName + fileName)) {
 			StringBuilder outputBuilder = new StringBuilder(
 					"Progetto;#Training Release;%Training;%Buggy in training;%Buggy in test;Classifier;Feature selection;"
-							+ "Balancing;TP;FP;TN;FN;Precision;Recall;Area Under ROC;Kappa\n");
+							+ "Sensitivity;Balancing;TP;FP;TN;FN;Precision;Recall;Area Under ROC;Kappa\n");
 			for (WekaMetrics r : results) {
 				if (r.isMean()) {
 					outputBuilder.append("MEAN;" + ";" + ";" + ";" + ";" + ";" + ";" + ";");
@@ -169,6 +167,7 @@ public class CSVHandler {
 							+ String.format(Locale.US, "%.2f", r.getPercentageBuggyInTraining()) + ";"
 							+ String.format(Locale.US, "%.2f", r.getPercentageBuggyInTesting()) + ";"
 							+ r.getClassifierName() + ";" + r.getFeatureSelectionName() + ";"
+							+ r.getCostSensitivityName() + ";"
 							+ r.getResamplingMethodName() + ";");
 				}
 

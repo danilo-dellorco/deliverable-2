@@ -15,6 +15,9 @@ import utils.DateHandler;
 import utils.JsonHandler;
 import utils.Parameters;
 
+/**
+ * Modella un progetto presente su Jira.
+ */
 public class JiraProject {
 	private String url;
 	private String name;
@@ -26,8 +29,8 @@ public class JiraProject {
 		this.releaseList = fetchReleases();
 	}
 
-	/*
-	 * Ottiene da Jira tutte le release, ignorando quelle senza informazioni
+	/**
+	 * Ottiene una lista di tutte le release Jira, scartando quelle con informazioni parziali o incorrette.
 	 */
 	public List<JiraRelease> fetchReleases() {
 		JSONObject json;
@@ -42,8 +45,8 @@ public class JiraProject {
 				if (tempRelease.has("releaseDate") && tempRelease.getBoolean(Parameters.RELEASED_JSON)) {
 					LocalDate releaseDate = LocalDate.parse(tempRelease.getString("releaseDate"));
 					JiraRelease release = new JiraRelease();
-					release.setName(tempRelease.getString(Parameters.NAME_JSON));
-					release.setReleaseDate(releaseDate);
+						release.setName(tempRelease.getString(Parameters.NAME_JSON));
+						release.setReleaseDate(releaseDate);
 					allRelease.add(release);
 				}
 			}
@@ -54,7 +57,7 @@ public class JiraProject {
 	}
 
 	
-	/*
+	/**
 	 * Ottiene tutti i ticket riferiti a bug risolti tramite le Rest API di Jira.
 	 * Dopo aver ottenuto la lista di tutti i ticket mantiene soltanto quelli con informazioni
 	 * coerenti o su cui è possibile utilizzare proportion
@@ -101,9 +104,9 @@ public class JiraProject {
 	}
 
 	
-	/*
-	 * Pulizia dei tickets: si identifica la FV dalla lista di FV ritornate da Jira e
-	 * si scartano eventuali ticket dove non posso identificare una FV
+	/**
+	 * Effettua una pulizia dei ticket: si identifica la FV dalla lista di FV ritornate da Jira e
+	 * si scartano eventuali ticket dove non posso identificare una FV.
 	 */
 	public List<JiraTicket> cleanTickets(List<JiraTicket> tickets) throws JSONException {
 		Iterator<JiraTicket> iterator = tickets.iterator();
@@ -127,9 +130,9 @@ public class JiraProject {
 	}
 
 	
-	/*
-	 * Se la FV non è presente, si considera la prima versione successiva (in ordine
-	 * cronologico) alla data di risoluzione del ticket
+	/**
+	 * Corregge i ticket che non hanno informazioni sulla Fixed Version, considerando come FV la prima versione successiva alla
+	 * data di risoluzione del ticket.
 	 */
 	private void fixEmptyFV(JiraTicket ticket) {
 		JiraRelease newFV = new JiraRelease();
@@ -157,8 +160,8 @@ public class JiraProject {
 	}
 
 	
-	/*
-	 * Se ci sono piu FV, si considera la versione piu vecchia nella lista come FV
+	/**
+	 * Corregge le informazioni riguardo i ticket che hanno più Fixed Version, considerando soltanto la versione piu vecchia nella lista come FV
 	 */
 	private void fixMultipleFV(JiraTicket ticket) {
 		List<JiraRelease> oldFV = ticket.getFixedVersions();
@@ -167,22 +170,9 @@ public class JiraProject {
 	}
 
 	
-	//TODO queste informazioni vanno nella relazione, qui bisogna lasciare una spiegazione del metodo
-	/*
-	 * Assumiamo che OV=FV nel caso in cui si abbia OV>FV. 
-	 * Eliminiamo i ticket nei seguenti casi:
-	 * 		1) IV=OV=FV, il bug non esiste nella release
-	 * 		perchè l'intervallo di AV è vuoto
-	 * 
-	 * 		2) OV=FV e IV non nota, dovremmo applicare
-	 * 		proportion ma ricadiamo nel caso 1)
-	 * 
-	 * 		3) IV>OV=FV, l'IV non è coerente con il
-	 * 		resto dei dati, perciò non la conosciamo e ricadiamo nel caso 2)
-	 * 
-	 * I ticket rimanenti sono quelli per cui IV<OV==FV e OV<FV.
-	 * Nel primo caso, i dati sono coerenti e conosco l'intervallo [IV,FV) che sono le AV.
-	 * Nel secondo caso andiamo a predirre l'IV applicando proportion
+	/** 
+	 * Restituisce una lista contenente tutti i ticket con informazioni coerenti. Se possibile
+	 * inserisce automaticamente le informazioni mancanti, altrimenti scarta il ticket.
 	 */
 	public List<JiraTicket> selectTickets(List<JiraTicket> tickets) throws JSONException {
 		JiraRelease ivRelease;
@@ -232,9 +222,9 @@ public class JiraProject {
 	}
 	
 	
-	/*
+	/**
 	 * Corregge i ticket con informazioni incomplete e filtra soltanto i ticket con
-	 * informazioni coerenti o su cui è possibile applicare Proportion
+	 * informazioni coerenti o su cui è possibile applicare Proportion.
 	 */
 	public List<JiraTicket> filterTickets(List<JiraTicket> tickets) {
 		List<JiraTicket> cleanedTickets = cleanTickets(tickets);
@@ -242,9 +232,9 @@ public class JiraProject {
 	}
 
 	
-	/*
+	/**
 	 * Mantiene soltanto le release/versioni che sono state effettivamente rilasciate su Jira/Git
-	 * Questo perchè alcune versioni possono essere riportate in maniera erronea su Jira, ma sono
+	 * Questo perchè alcune versioni possono essere riportate in maniera erronea su Jira come 'released', ma sono
 	 * in realtà versioni mai rilasciate.
 	 */
 	public List<JiraRelease> cleanVersions(JSONArray json) {
@@ -266,7 +256,7 @@ public class JiraProject {
 	}
 	
 	
-	/*
+	/**
 	 * Ritorna la release tramite il nome della versione (es. 4.4.0)
 	 */
 	public static JiraRelease getReleaseByName(List<JiraRelease> releases, String name) {

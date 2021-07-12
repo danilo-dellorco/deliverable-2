@@ -1,8 +1,9 @@
 package data;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import git.GitCommit;
 import git.GitRelease;
 import utils.PathHandler;
 
@@ -10,6 +11,7 @@ import utils.PathHandler;
  * Rappresenta una classe relativa al progetto da analizzare
  */
 public class ProjectClass {
+	Logger logger = Logger.getLogger(ProjectClass.class.getName());
 	
 	// Attributi della classe
 	private boolean buggyness = false;
@@ -91,12 +93,11 @@ public class ProjectClass {
 	}
 
 	public void print() {
-		System.out.println("Class Name: "+this.path);
-		System.out.println("Class Rele: "+this.release.getName());
+		String out1 = String.format("Class Name: %s%nnClass Release: %s", this.path, this.release.getName());
+		logger.log(Level.INFO, out1);
 		if (dateAdded!=null) {
-			System.out.println("Class Date: "+this.getDateAdded());
-			System.out.println("Reles Date: "+this.release.getDate());
+			String out2 = String.format("Class Date: %s%nRelease Date: %s", this.getDateAdded(), this.release.getDate());
+			logger.log(Level.INFO, out2);
 		}
-		System.out.println ("Buggyness: " + buggyness);
 	}
 }

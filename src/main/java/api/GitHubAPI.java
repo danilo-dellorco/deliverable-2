@@ -16,7 +16,9 @@ import org.eclipse.jgit.lib.Ref;
 
 import git.GitRelease;
 import utils.Parameters;
-
+/**
+ * API per interagire con la repositori GitHub
+ */
 public class GitHubAPI {
 	
 	private GitHubAPI() {}
@@ -37,7 +39,7 @@ public class GitHubAPI {
 			logger.log(Level.INFO, "Local Git Repository Found. Opening.");
 			git = Git.open(new File(local));
 			git.checkout().setName(getDefaultBranchName(git)).call();
-//			git.pull().call();
+			git.pull().call();
 		}
 		logger.log(Level.INFO, "Repository opened Succesfully");
 		return git;
@@ -91,6 +93,9 @@ public class GitHubAPI {
 		return latest;
 	}
 	
+	/**
+	 * Ritorna tutte le release prima di una release specificata
+	 */
 	public static List<GitRelease> getReleaseBefore(List<GitRelease> versions, GitRelease lastRelease) {
 		List<GitRelease> beforeList = new ArrayList<>();
 		for (GitRelease r:versions) {

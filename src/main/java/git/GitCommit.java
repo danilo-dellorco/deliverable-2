@@ -1,7 +1,8 @@
 package git;
 
 import java.util.Date;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.PersonIdent;
@@ -18,6 +19,7 @@ public class GitCommit {
 	PersonIdent author;
 	boolean fixCommit;
 	
+	Logger logger = Logger.getLogger(GitCommit.class.getName());
 	
 	public GitCommit(ObjectId id, Date date, String message) {
 		this.id = id;
@@ -38,20 +40,16 @@ public class GitCommit {
 	 * [DEBUG] Stampa a schermo tutte le informazioni del GitCommit
 	 **/
 	public void print() {
-		String output = String.format("ID: %s%ndate: %s%nmessage: %s", this.id, this.date, this.message);
-
-		System.out.println(output);
-		System.out.println("=".repeat(200));
+		String output = String.format("Commit Info%nID: %s%ndate: %s%nmessage: %s%n", this.id, this.date, this.message);
+		logger.log(Level.INFO,output);
 	}
 	
 	/**
 	 * [DEBUG] Stampa a schermo tutte le informazioni del GitCommit senza messaggio
 	 **/
 	public void printNoMsg() {
-		String output = String.format("ID: %s%ndate: %s%nfix: %s", this.id, this.date, this.fixCommit);
-
-		System.out.println(output);
-		System.out.println("=".repeat(200));
+		String output = String.format("Commit Info%nID: %s%ndate: %s%nfix: %s", this.id, this.date, this.fixCommit);
+		logger.log(Level.INFO,output);
 	}
 
 	

@@ -53,7 +53,7 @@ public class Proportion {
 			break;
 
 		case "moving_window":
-			// TODO implementare movingwindow
+			// NOT IMPLEMENTED
 			break;
 
 		default:

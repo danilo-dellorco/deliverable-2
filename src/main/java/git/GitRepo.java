@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.eclipse.jgit.api.DescribeCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -32,6 +32,8 @@ import utils.Debug;
 import utils.Parameters;
 
 public class GitRepo {
+	static Logger logger = Logger.getLogger(GitRepo.class.getName());
+	
 	String projectName;
 	String releaseFilter;
 	String local;
@@ -48,7 +50,6 @@ public class GitRepo {
 		this.releaseList = new ArrayList<>();
 		this.git = GitHubAPI.initializeRepository(projectName, local);
 		this.releaseFilter = fetchReleaseFilter();
-//		this.releaseList = fetchReleases();
 	}
 	
 	public String fetchReleaseFilter() {
@@ -285,7 +286,7 @@ public class GitRepo {
 	 * e al tipo di Diff (ADD/MODIFY/RENAME) calcola le metriche opportune
 	 * @throws GitAPIException 
 	 */
-	public void calcMetricsFromDiff(GitCommit commit, GitCommit previous) throws IOException, GitAPIException {
+	public void calcMetricsFromDiff(GitCommit commit, GitCommit previous) throws IOException {
 		GitDiff gitDiff;
 		GitRelease releaseClass;
 		String pathClass;
@@ -319,7 +320,6 @@ public class GitRepo {
 			
 			// Gestione del Rename
 			if (gitDiff.isRename()) {
-				System.out.println("eh");
 				String oldPath = d.getOldPath();
 				ProjectClass oldProjectClass = commit.getRelease().getProjectClass(oldPath);
 				projectClass.setMetrics(oldProjectClass.getMetrics());
@@ -429,23 +429,26 @@ public class GitRepo {
 			}
 		}
 		normalizeReleaseID(classes);
-		return getHalfClasses(classes,releases);
+		return getHalfClasses(releases);
 	}
 	
 	public boolean validClassList(List<ProjectClass> list) {
 		boolean firstValue = list.get(0).isBuggy();
-		for (ProjectClass p:list) {
+		for (int i = 0; i<list.size(); i++) {
+			ProjectClass p = list.get(i);
 			boolean actualValue = p.isBuggy();
 			if (actualValue!=firstValue) {
+				if (!firstValue) {
+					ProjectClass n = list.get(i+1);
+					n.setBuggy(true);
+				}
 				return true;
 			}
 		}
 		return false;
 	}
-		
 
-
-	public List<ProjectClass> getHalfClasses(List<ProjectClass> snoringList, List<GitRelease> releases) {
+	public List<ProjectClass> getHalfClasses(List<GitRelease> releases) {
 		int total = releases.size();
 		int discarded = this.releaseList.size() - releases.size() +1 ;
 		GitRelease endSnoring = releases.get(total/2+discarded/2); 
@@ -494,42 +497,17 @@ public class GitRepo {
 	/**
 	 * Calcola ed imposta tutte le metriche relative alle classi del progetto. Esegue il metodo
 	 * calcMetricsFromDiff() passando in input tutti i commit del progetto.
-	 * @throws GitAPIException 
 	 **/
-	public void setMetrics() throws IOException, GitAPIException {
+	public void setMetrics() throws IOException {
 		int actual = 1;
 		int total = this.commitList.size();
 		GitCommit previous = null;
 		for (GitCommit c : this.commitList) {
-//			System.out.println(actual + "/" + total);
 			Debug.printPercentage((double) actual,(double) total);
 			calcMetricsFromDiff(c,previous);
 			previous = c;
 			actual++;
 		}
-	}
-	
-	public GitCommit getCommitFromId(String string) {
-		for (GitCommit c : this.commitList) {
-			if (c.getId().toString().equals(string)) {
-				return c;
-			}
-		}
-		return null;
-	}
-	
-	//syncope-1.2.1-260-gf6d48fd
-	public GitRelease getRealRelease(GitCommit commit) throws IOException, GitAPIException {
-		DescribeCommand cmd = this.git.describe();
-		cmd.setTarget(commit.getId());
-		String out = cmd.call();
-		if (out!=null) {
-			int start = out.indexOf("-")+1;
-			int end = out.indexOf("-",start+1);
-			String version = out.substring(start,end);
-			return this.getReleaseByName(version);
-		}
-		return null;
 	}
 	
 	/*===============================================================================================
