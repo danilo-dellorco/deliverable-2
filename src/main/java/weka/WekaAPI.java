@@ -55,28 +55,22 @@ public class WekaAPI {
 		int releasesNumber = getReleasesNumber(getDataset());
 		List<WekaMetrics> resultList = new ArrayList<>();
 
-		// per ogni classificatore, per ogni metodo di feature selection, per ogni
-		// metodo di balancing, per ogni iterazione di walk forward
-		// viene salvato il risultato
 		for (String classifierName : this.classifiers) {
 			for (String featureSelectionName : this.featureSelectionMethods) {
 				for (String resamplingMethodName : this.resamplingMethods) {
 					for (String costSensitiveMethod : this.costSensitiveMethods) {
-						// con walk-forward partiamo dalla seconda release come test set perche non
-						// abbiamo un training set per la prima
-						// terminiamo con l'ultima release come test set che avra tutte le precedenti
-						// come training set
 						Debug.printWekaRunConfiguration(classifierName, featureSelectionName, resamplingMethodName,
 								costSensitiveMethod);
 						WekaMetrics mean = new WekaMetrics(classifierName, featureSelectionName, resamplingMethodName,
 								costSensitiveMethod);
+						
+						// Eseguo walk forward a partire dalla seconda release, in quanto la prima viene utilizzata
+						// soltanto come Training Set
 						for (int i = 2; i < releasesNumber; i++) {
-							WekaMetrics result = new WekaMetrics(classifierName, featureSelectionName,
-									resamplingMethodName, costSensitiveMethod);
+							WekaMetrics result = new WekaMetrics(classifierName, featureSelectionName, resamplingMethodName, costSensitiveMethod);
 							Instances[] trainTest = splitTrainingTestSet(getDataset(), i);
-							runWalkForwardIteration(trainTest, result, i);
+							runWalkForwardConfiguration(trainTest, result, i);
 							resultList.add(result);
-
 							mean.setTotalValues(result);
 						}
 						mean.calculateMean((double) releasesNumber - 2);
@@ -105,14 +99,12 @@ public class WekaAPI {
 	public Instances[] splitTrainingTestSet(Instances data, int testReleaseIndex) {
 		Instances[] trainTest = new Instances[2];
 
-		// creiamo due dataset vuoti con la stessa intestazione del dataset di partenza
+		// Si inizializzano due dataset vuoti
 		Instances trainingSet = new Instances(data, 0);
 		Instances testSet = new Instances(data, 0);
 
-		// per ogni istanza, se la release e' precedente a quella da usare come test set
-		// allora
-		// si aggiunge quell'istanza al training set, altrimenti, se e' uguale, la
-		// aggiungo al test set
+		// Per ogni istanza si aggiunge la release al training set se è precedente all'iterazione corrente
+		// Per ogni istanza si aggiunge la release al testing set se è uguale all'iterazione corrente
 		int index = data.attribute(VERSIONID).index();
 		for (Instance i : data) {
 			if ((int) i.value(index) < testReleaseIndex) {
@@ -129,17 +121,16 @@ public class WekaAPI {
 	/**
 	 * Esegue un'iterazione di Walk Forward
 	 */
-	public void runWalkForwardIteration(Instances[] trainTest, WekaMetrics metrics, int iterationIndex) {
+	public void runWalkForwardConfiguration(Instances[] trainTest, WekaMetrics metrics, int iterationIndex) {
 		Instances trainingSet = trainTest[0];
 		Instances testSet = trainTest[1];
 
-		// rimuove dal dataset la feature relativa all'id della release, necessaria solo
-		// per splittare il dataset
+		// Rimuove dal dataset la feature relativa all'ID della versione, utile soltanto per splittare il dataset
 		int index = trainingSet.attribute(VERSIONID).index();
 		trainingSet.deleteAttributeAt(index);
 		testSet.deleteAttributeAt(index);
 
-		// setta la feature da predirre, ovvero la buggyness
+		// Setup della feature da predirre (buggyness)
 		trainingSet.setClassIndex(trainingSet.numAttributes() - 1);
 		testSet.setClassIndex(trainingSet.numAttributes() - 1);
 		setupClassifier(metrics.getClassifierName());
@@ -237,19 +228,13 @@ public class WekaAPI {
 		// Setup del metodo di Feature Selection
 		try {
 			if (metrics.getFeatureSelectionName().equalsIgnoreCase("Best First")) {
-				// create AttributeSelection object
 				featureSelection = new AttributeSelection();
-				// create evaluator and search algorithm objects
 				CfsSubsetEval eval = new CfsSubsetEval();
 				GreedyStepwise search = new GreedyStepwise();
-				// set the algorithm to search backward
 				search.setSearchBackwards(true);
-				// set the filter to use the evaluator and search algorithm
 				featureSelection.setEvaluator(eval);
 				featureSelection.setSearch(search);
-				// specify the dataset
 				featureSelection.setInputFormat(trainingSet);
-				// apply
 				trainingSet = Filter.useFilter(trainingSet, featureSelection);
 				testSet = Filter.useFilter(testSet, featureSelection);
 				int numAttrFiltered = trainingSet.numAttributes();
@@ -257,12 +242,14 @@ public class WekaAPI {
 				testSet.setClassIndex(numAttrFiltered - 1);
 			}
 
-			// salvo le informazioni relative al numero di release in training e alla
-			// percentuale di bugginess nel training e nel test set
+			// Salvo le informazioni sul numero di release nel training set
+			// e sulla percentuale di bugginess nel training e nel test set
 			metrics.setDatasetValues(trainingSet, testSet, iterationIndex);
 
 			Evaluation eval = new Evaluation(testSet);
-			// addestro il classificatore con il training set
+			
+			// Addestro il classificatore utilizzando il training set, e ne valuto il comportamento
+			// tramite il testing set
 			if (costSensitiveClassifier != null) {
 				costSensitiveClassifier.buildClassifier(trainingSet);
 				eval.evaluateModel(costSensitiveClassifier, testSet);
@@ -271,7 +258,7 @@ public class WekaAPI {
 				eval.evaluateModel(classifier, testSet);
 			}
 
-			// salvo i risultati nell'oggetto result
+			// Salvo tutti i risultati ottenuti all'interno dell'oggetto metrics.
 			metrics.setValues(eval, getPositiveClassIndex());
 		} catch (Exception e) {
 			e.printStackTrace();

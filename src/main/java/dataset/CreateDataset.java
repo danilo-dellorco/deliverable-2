@@ -42,7 +42,8 @@ public class CreateDataset {
 		repository.setFixCommitList(fixBugCommits);
 		
 		// Calcolo ed imposto tutte le metriche delle classi
-		repository.setMetrics();																	
+		repository.setMetrics();
+		
 		
 		// Genero il dataset
 		generateDataset(projName, repository);

@@ -160,7 +160,7 @@ public class CSVHandler {
 							+ "Sensitivity;Balancing;TP;FP;TN;FN;Precision;Recall;Area Under ROC;Kappa\n");
 			for (WekaMetrics r : results) {
 				if (r.isMean()) {
-					outputBuilder.append("MEAN;" + ";" + ";" + ";" + ";" + ";" + ";" + ";");
+					outputBuilder.append("MEAN;" + ";" + ";" + ";" + ";" + ";" + ";" + ";" + ";");
 				} else {
 					outputBuilder.append(projectName + ";" + r.getNumTrainingRelease() + ";"
 							+ String.format(Locale.US, "%.2f", r.getPercentageTraining()) + ";"
@@ -193,7 +193,7 @@ public class CSVHandler {
 	}
 
 	/**
-	 * Converte un file CSV in un file ARFF da fornire a Weka.
+	 * Converte un file CSV in un file ARFF da fornire come dataset a Weka.
 	 */
 	public static void convertCSVtoARFF(String fileName) {
 		Logger logger = Logger.getLogger(CSVHandler.class.getName());
@@ -204,9 +204,7 @@ public class CSVHandler {
 		}
 		try {
 			logger.log(Level.INFO, "No ARFF File Found. Converting CSV Dataset...");
-			// load CSV
 			Instances data = loadFileCSV(fileName);
-			// save ARFF
 			ArffSaver saver = new ArffSaver();
 			saver.setInstances(data);
 			saver.setFile(file);
@@ -230,7 +228,7 @@ public class CSVHandler {
 			loader.setSource(new File(fileName));
 			data = loader.getDataSet();
 
-			// elimino le colonne relative al nome della versione e al nome del file
+			// Elimino le colonne relative al nome della versione e al nome del file
 			index = data.attribute("VersionName").index();
 			data.deleteAttributeAt(index);
 			index = data.attribute("Path").index();
@@ -241,6 +239,7 @@ public class CSVHandler {
 		return data;
 	}
 
+	
 	/**
 	 * Carica il file ARFF contenente il dataset
 	 */
@@ -254,5 +253,16 @@ public class CSVHandler {
 			e.printStackTrace();
 		}
 		return data;
+	}
+	
+	/**
+	 * Cancella il file CSV temporaneo utilizzato per generare il dataset ARFF
+	 */
+	public static void deleteTempCSV(String projectName) {
+		// Cancello il file csv temporaneo utilizzato per la conversione in ARFF
+		File file = new File(Parameters.OUTPUT_PATH + projectName + Parameters.WEKA_CSV);
+		if(file.exists()) {
+			file.deleteOnExit();
+		}
 	}
 }

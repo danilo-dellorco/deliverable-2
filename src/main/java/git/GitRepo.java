@@ -138,7 +138,7 @@ public class GitRepo {
 			
 			GitRelease release = new GitRelease(this.git, gitCommit, releaseName, releaseDate);
 			fetchedReleases.add(release);
-
+		
 		}
 		walk.close();
 		return fetchedReleases;
@@ -316,7 +316,6 @@ public class GitRepo {
 			if (projectClass == null) {
 				continue;
 			}
-			projectClass.setAnalyzed(true);
 			
 			// Gestione del Rename
 			if (gitDiff.isRename()) {
@@ -367,7 +366,6 @@ public class GitRepo {
 			ProjectClass projClass = gitAv.getProjectClass(pathClass);
 			if (projClass!=null) {
 				projClass.setBuggy(true);
-				projClass.setAnalyzed(true);
 			}
 		}
 	}
